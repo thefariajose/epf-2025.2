@@ -37,6 +37,7 @@ class User:
         )
 
 
+
 class UserModel:
     FILE_PATH = os.path.join(DATA_DIR, 'users.json')
 
