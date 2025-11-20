@@ -1,19 +1,23 @@
-% rebase('layout.tpl', title='Nova Atividade' if not activity else 'Editar Atividade')
+% rebase('layout.tpl', title='Atividades')
 
-
-<h1>{{'Editar Atividade' if activity else 'Nova Atividade'}}</h1>
-<form action="{{action}}" method="post">
-    <label>Nome:<br>
-        <input type="text" name="name" value="{{activity.name if activity else ''}}" required>
-    </label><br><br>
-    <label>Descrição:<br>
-        <textarea name="description" required>{{activity.description if activity else ''}}</textarea>
-    </label><br><br>
-    <label>
-        <input type="checkbox" name="done" % if activity and activity.done %checked% end>
-        Feita?
-    </label><br><br>
-    <button type="submit">Salvar</button>
-</form>
-<a href="/activities">Voltar</a>
-%end
+<h1>Atividades</h1>
+<a href="/activities/add">Adicionar Atividade</a>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Nome</th><th>Descrição</th><th>Feita?</th><th>Ações</th>
+    </tr>
+    % for a in activities:
+    <tr>
+        <td>{{a.id}}</td>
+        <td>{{a.name}}</td>
+        <td>{{a.description}}</td>
+        <td>{{'Sim' if a.done else 'Não'}}</td>
+        <td>
+            <a href="/activities/edit/{{a.id}}">Editar</a>
+            <form action="/activities/delete/{{a.id}}" method="post" style="display:inline;">
+                <button type="submit">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    % end
+</table>
