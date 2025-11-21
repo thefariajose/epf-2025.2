@@ -17,9 +17,15 @@
         </div>
         
         <div class="form-group">
-            <label for="birthdate">Data de Nascimento:</label>
-            <input type="date" id="birthdate" name="birthdate" required 
-                   value="{{user.birthdate if user else ''}}">
+            <label for="password">Senha:</label>
+            <input type="text" id="password" name="password" required 
+                   value="{{user.password if user else ''}}">
+        </div>
+
+        <div class="form-group">
+            <label for="telephone">Telefone:</label>
+            <input type="text" id="telephone" name="telephone" required 
+                   value="{{user.telephone if user else ''}}">
         </div>
         
         <div class="form-actions">
