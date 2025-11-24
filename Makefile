@@ -1,5 +1,5 @@
 lint:
-	pylint --disable=all --enable=trailing-whitespace,line-too-long,missing-final-newline .
+	pylint --disable=all --enable=trailing-whitespace,line-too-long,missing-final-newline. 
 
 run:
 	python3 main.py
