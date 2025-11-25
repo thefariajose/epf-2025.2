@@ -5,6 +5,7 @@ from typing import List
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
+
 class Locador:
     def __init__(self, id, name, email, password, telephone, is_locador, cnpj, veiculos : list, historico_locacoes : list, avaliacao,  n_avaliacoes):
         self.id = id
@@ -21,11 +22,11 @@ class Locador:
 
 
     def __repr__(self):
-        return (f"Locador(id={self.id}, name='{self.name}', email='{self.email}', "
-                f"password='{self.password}', telephone='{self.telephone}'"
-                f"is_locador='{self.is_locador}', cnpj='{self.cnpj}'"
-                f"veiculos='{self.veiculos}', historico_locacoes='{self.historico_locacoes}'"
-                f"avaliacao='{self.avaliacao}', n_avaliacoes='{self.n_avaliacoes}'")
+        return (f"Locador(id={self.id}, name='{self.name}', email='{self.email}',"
+                f"password='{self.password}', telephone='{self.telephone}',"
+                f"is_locador='{self.is_locador}', cnpj='{self.cnpj}',"
+                f"veiculos='{self.veiculos}', historico_locacoes='{self.historico_locacoes}',"
+                f"avaliacao='{self.avaliacao}', n_avaliacoes='{self.n_avaliacoes}')")
 
     def to_dict(self):
         return {
@@ -36,8 +37,8 @@ class Locador:
             'telephone': self.telephone,
             'is_locador': self.is_locador,
             'cnpj': self.cnpj,
-            'veiculos': [v.to_dict() for v in self.veiculos],
-            'historico_locacoes': """[l.to_dict() for l in self.historico_locacoes]""" ,
+            'veiculos': self.veiculos,
+            'historico_locacoes': self.historico_locacoes,
             'avaliacao' : self.avaliacao,
             'n_avaliacoes': self.n_avaliacoes
         }
@@ -53,8 +54,8 @@ class Locador:
             telephone=data['telephone'],
             is_locador=data['is_locador'],
             cnpj=data['cnpj'],
-            veiculos=data['veiculos'],
-            historico_locacoes=data['historico_locacoes'],
+            veiculos=['veiculos'],
+            historico_locacoes=['historico_locacoes'],
             avaliacao=data['avaliacao'],
             n_avaliacoes=data['n_avaliacoes']
         )
