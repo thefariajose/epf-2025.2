@@ -1,8 +1,9 @@
+from abc import abstractmethod
 from bottle import request
 from models.user import UserModel, User
 
 #constructor
-class UserService:
+class UserService :
     def __init__(self):
         self.user_model = UserModel()
 

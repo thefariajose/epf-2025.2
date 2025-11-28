@@ -2,6 +2,7 @@ from bottle import Bottle, request
 from .base_controller import BaseController
 from services.activity_service import ActivityService
 
+#na real é tudo mt parecido do activities pro user, provavelmente a gnt vai fazer isso pro resto tb na real
 class ActivityController(BaseController):
     def __init__(self, app):
         super().__init__(app)

@@ -5,5 +5,12 @@
         "email": "uduarioteste@email.com",
         "password": "123456789",
         "telephone": "61912345678"
+    },
+    {
+        "id": 2,
+        "name": "Samuka",
+        "email": "samuelbalbino153@gmail.com",
+        "password": "123343513",
+        "telephone": "(61) 99961-5562"
     }
 ]

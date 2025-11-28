@@ -17,8 +17,9 @@ class Activity:
     def from_dict(cls, data):
         return cls(**data)
 
-
+#no geral, próximo do user
 class ActivityModel:
+    #aqui define o file path exatamente, diferente do outro que usa a função lá os.path.join
     FILE_PATH = 'data/activities.json'
 
     def __init__(self):
@@ -28,12 +29,15 @@ class ActivityModel:
         import json, os
         if not os.path.exists(self.FILE_PATH):
             return []
+        #bem próximo do user
         with open(self.FILE_PATH, 'r', encoding='utf-8') as f:
             return [Activity.from_dict(item) for item in json.load(f)]
+            #retorna iteração do item em dict, cada iteração json salva f em uma lista de dicts em python
 
     def _save(self):
         import json
         with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
+            #aqui o json dump pega os arquivos e salva em um dicionário 
             json.dump([a.to_dict() for a in self.activities], f, indent=4, ensure_ascii=False)
 
     def get_all(self):
