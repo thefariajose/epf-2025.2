@@ -64,36 +64,35 @@ class VehicleModel:
         self.vehicles = self._load()
     
     def _load(self):
-        import json, os
         if not os.path.exists(self.FILE_PATH):
             return []
         with open(self.FILE_PATH, 'r', encoding = 'utf-8') as f:
+            # Olhar classe Ciliente
             return [Vehicle.from_dict(item) for item in json.load(f)]
         
     def _save(self):
-        import json
         with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
-            json.dump([a.to_dict() for a in self.vehicles], f, indent=4, ensure_ascii=False)
+            json.dump([v.to_dict() for v in self.vehicles], f, indent=4, ensure_ascii=False)
     
     def get_all(self):
         return self.vehicles
 
     def get_by_id(self, vehicle_id):
-        return next((a for a in self.vehicles if a.id == vehicle_id), None)
+        return next((v for v in self.vehicles if v.id == vehicle_id), None)
 
     def add(self, vehicle):
         self.vehicles.append(vehicle)
         self._save()
 
     def update(self, updated_vehicle):
-        for i, a in enumerate(self.vehicles):
-            if a.id == updated_vehicle.id:
+        for i, v in enumerate(self.vehicles):
+            if v.id == updated_vehicle.id:
                 self.vehicles[i] = updated_vehicle
                 self._save()
                 break
 
     def delete(self, vehicle_id):
-        self.vehicles = [a for a in self.vehicles if a.id != vehicle_id]
+        self.vehicles = [v for v in self.vehicles if v.id != vehicle_id]
         self._save()
 
 

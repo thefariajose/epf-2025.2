@@ -42,7 +42,7 @@ class Locacao:
             cliente_id=data['cliente_id'],
             veiculo_id=data['veiculo_id'],
             data_inicio=data['data_inicio'],
-            data_fim=data['data_fim'],
+            data_fim=data.get('data_fim'), #Data_fim nem sempre já ocorreu
             valor_total=data['valor_total'],
             status=data['status']
         )
@@ -59,7 +59,8 @@ class LocacaoModel:
             return []
         with open(self.FILE_PATH, 'r', encoding='utf-8') as f:
             data = json.load(f)
-            return [Locacao(**item) for item in data]
+            # Olhar classe Ciliente
+            return [Locacao.from_dict(item) for item in data]
 
     def _save(self):
         with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
