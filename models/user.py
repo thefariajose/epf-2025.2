@@ -22,7 +22,7 @@ class User:
     #Função para representar os valores
     def __repr__(self):
         return (f"User(id={self.id}, name='{self.name}', email='{self.email}', "
-                f"password='{self.password}', telephone='{self.telephone}'")
+                f"password='{self.password}', telephone='{self.telephone}')")
 
     #Função para converter em dicionário para usar to string dps
     def to_dict(self):
@@ -44,6 +44,7 @@ class User:
             password=data['password'],
             telephone=data['telephone']
         )
+
 
 
 class UserModel:
