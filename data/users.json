@@ -1,16 +1,14 @@
 [
     {
         "id": 1,
-        "name": "UsuÃ¡rio Teste",
-        "email": "uduarioteste@email.com",
-        "password": "123456789",
-        "telephone": "61912345678"
+        "email": "samuelbalbino153@gmail.com",
+        "password": "1239101201",
+        "is_locador": true
     },
     {
         "id": 2,
-        "name": "Samuka",
-        "email": "samuelbalbino153@gmail.com",
-        "password": "123343513",
-        "telephone": "(61) 99961-5562"
+        "email": "251028378@aluno.unb.br",
+        "password": "123456789",
+        "is_locador": true
     }
 ]
