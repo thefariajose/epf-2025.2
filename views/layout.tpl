@@ -80,6 +80,14 @@
         nav a i {
             font-size: 1.1rem;
         }
+        
+        /* Estilo específico para o botão de logout */
+        .btn-logout {
+            background-color: #c0392b; /* Vermelho para indicar saída */
+        }
+        .btn-logout:hover {
+            background-color: #e74c3c !important;
+        }
     </style>
 
 </head>
@@ -88,10 +96,9 @@
     <nav>
         <ul>
             <li>
-                <a href="/users"><i class="fas fa-users"></i> Usuários</a>
-            </li>
-            <li>
-                <a href="/activities"><i class="fas fa-tasks"></i> Atividades</a>
+                <a href="/logout" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
             </li>
         </ul>
     </nav>
