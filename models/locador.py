@@ -101,6 +101,7 @@ class LocadorModel:
         return self.locadores
 
     def get_by_id(self, locador_id: int):
+        self.locadores = self._load() 
         return next((l for l in self.locadores if l.id == locador_id), None)
 
     def add_locador(self, locador: Locador):

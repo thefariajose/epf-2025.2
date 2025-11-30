@@ -104,6 +104,7 @@ class ClienteModel:
         return self.clientes
 
     def get_by_id(self, cliente_id: int):
+        self.clientes = self._load()
         return next((c for c in self.clientes if c.id == cliente_id), None)
 
     def add_cliente(self, cliente: Cliente):
