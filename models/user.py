@@ -68,6 +68,8 @@ class UserModel:
         self._save()
 
     def get_by_email(self, email):
+        self.users = self._load() 
+        
         return next((u for u in self.users if u.email == email), None)
     
     def update_user(self, updated_user: User):

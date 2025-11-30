@@ -1,0 +1,14 @@
+[
+    {
+        "id": 2,
+        "name": "Ronaldo",
+        "email": "cliente@teste.com",
+        "password": "123",
+        "telephone": "21 232332323",
+        "is_locador": false,
+        "cpf": "23443224312",
+        "endereco": "wqwe3crrqwexw",
+        "historico_aluguel": [],
+        "locacao_atual": null
+    }
+]
