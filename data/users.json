@@ -1,14 +1,8 @@
 [
-    {
         "id": 1,
-        "email": "",
-        "password": "",
-        "is_locador": true
-    },
-    {
-        "id": 2,
-        "email": "",
-        "password": "",
-        "is_locador": true
-    }
+        "name": "UsuÃ¡rio Teste",
+        "email": "uduarioteste@email.com",
+        "password": "123456789",
+        "telephone": "61912345678"
+    
 ]
