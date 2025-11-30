@@ -20,7 +20,7 @@ class LoginController(BaseController):
             user = self.login_service.authenticate()
             
             if user:
-                response.set_cookie("user_id", str(user.id), secret='sua-chave-secreta-aqui')
+                response.set_cookie("user_id", str(user.id), secret='secret_key')
     
                 is_locador = str(user.is_locador).lower() == 'true' or user.is_locador == 'on'
                 

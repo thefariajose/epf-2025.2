@@ -1,14 +1,14 @@
 [
     {
-        "id": 1,
-        "email": "samuelbalbino153@gmail.com",
-        "password": "1239101201",
-        "is_locador": true
+        "id": 3,
+        "email": "emailteste@gmail.com",
+        "password": "123456789",
+        "is_locador": false
     },
     {
-        "id": 2,
-        "email": "251028378@aluno.unb.br",
-        "password": "123456789",
+        "id": 4,
+        "email": "exemplo@gmail.com",
+        "password": "senhasegura",
         "is_locador": true
     }
 ]

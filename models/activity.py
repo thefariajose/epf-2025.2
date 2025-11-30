@@ -1,3 +1,4 @@
+#Classe que possivelmente ainda será removida do projeto
 class Activity:
     def __init__(self, id, name, description, done):
         self.id = id

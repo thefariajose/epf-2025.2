@@ -3,6 +3,8 @@ import os
 from dataclasses import dataclass, asdict
 from typing import List
 
+#Classe onde os usuários básicos para login são cadastrados
+
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 class User:

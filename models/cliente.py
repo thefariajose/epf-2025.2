@@ -4,7 +4,7 @@ from dataclasses import dataclass, asdict
 from typing import List, Optional
 from models.locacao import Locacao
 
-
+#classe do usuário como clientes Model
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 class Cliente:
