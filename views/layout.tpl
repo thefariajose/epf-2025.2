@@ -10,7 +10,7 @@
     <style>
         /* Estilo rápido para o Menu */
         nav {
-            background-color: #3498db; /* Mesma cor primária do seu CSS */
+            background-color: #3498db;
             padding: 1rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 20px;
@@ -18,7 +18,7 @@
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end; /* Alinha o botão para a direita */
             gap: 20px;
             margin: 0;
             padding: 0;
@@ -28,12 +28,20 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
-            padding: 5px 10px;
+            padding: 8px 15px;
             border-radius: 4px;
             transition: background 0.3s;
         }
         nav a:hover {
             background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Estilo específico para o botão de logout */
+        .btn-logout {
+            background-color: #c0392b; /* Vermelho para indicar saída */
+        }
+        .btn-logout:hover {
+            background-color: #e74c3c !important;
         }
     </style>
 </head>
@@ -42,16 +50,16 @@
     <nav>
         <ul>
             <li>
-                <a href="/users"><i class="fas fa-users"></i> Usuários</a>
-            </li>
-            <li>
-                <a href="/activities"><i class="fas fa-tasks"></i> Atividades</a>
+                <a href="/logout" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
             </li>
         </ul>
     </nav>
 
     <div class="container">
-        {{!base}}  </div>
+        {{!base}}
+    </div>
 
     <footer>
         <p>&copy; 2025, Meu Projeto. Todos os direitos reservados.</p>
