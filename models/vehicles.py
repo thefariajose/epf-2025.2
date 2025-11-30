@@ -5,6 +5,8 @@ from typing import List
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
+#Classe dos veículos
+
 class Vehicle:
     def __init__(self, id, placa, marca, modelo, ano, quilometragem, status, avaliacao, n_avaliacoes,  is_disponivel, preco_diaria):
         self.id = id

@@ -37,7 +37,7 @@ class UserController(BaseController):
             # POST - salvar usuário
             self.user_service.save()
             #método save do services
-            self.redirect('/users')
+            self.redirect('/login')
             #redirect de antes pra o users
 
 
