@@ -1,4 +1,4 @@
-from bottle import Bottle, request, response
+from bottle import Bottle, request, response, redirect
 from .base_controller import BaseController
 from services.login_service import LoginService
 
@@ -7,7 +7,7 @@ class LoginController(BaseController):
         super().__init__(app)
         self.login_service = LoginService()
         self.setup_routes()
-    # Rotas do login
+
     def setup_routes(self):
         self.app.route('/login', method=['GET', 'POST'], callback=self.login)
         self.app.route('/logout', method='GET', callback=self.logout)
@@ -20,14 +20,17 @@ class LoginController(BaseController):
             user = self.login_service.authenticate()
             
             if user:
+                # Salva o ID no cookie
                 response.set_cookie("user_id", str(user.id), secret='secret_key')
     
-                is_locador = str(user.is_locador).lower() == 'true' or user.is_locador == 'on'
+                # Verifica se é locador
+                is_locador = str(user.is_locador).lower() == 'true' or user.is_locador == 'on' or user.is_locador is True
                 
                 if is_locador:
                     return self.redirect('/dashboard-locador') 
                 else:
-                    return self.redirect('/users') 
+                    # ALTERADO: Agora manda o cliente para a vitrine
+                    return self.redirect('/cliente/vitrine') 
             else:
                 return self.render('login', error="Email ou senha incorretos")
 

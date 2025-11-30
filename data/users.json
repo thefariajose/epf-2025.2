@@ -1,8 +1,14 @@
 [
+    {
         "id": 1,
-        "name": "UsuÃ¡rio Teste",
-        "email": "uduarioteste@email.com",
-        "password": "123456789",
-        "telephone": "61912345678"
-    
+        "email": "locador@teste.com",
+        "password": "123",
+        "is_locador": true
+    },
+    {
+        "id": 2,
+        "email": "cliente@teste.com",
+        "password": "123",
+        "is_locador": false
+    }
 ]

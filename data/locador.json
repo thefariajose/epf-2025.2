@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "name": "Messiii",
+        "email": "locador@teste.com",
+        "password": "123",
+        "telephone": "21 98764 3214",
+        "is_locador": true,
+        "cnpj": "09826567211",
+        "veiculos": [],
+        "historico_locacoes": []
+    }
+]

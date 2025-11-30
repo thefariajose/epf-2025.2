@@ -1,10 +1,7 @@
 import json
 import os
-from dataclasses import dataclass, asdict
-from typing import List, Optional
 from models.locacao import Locacao
 
-#classe do usuário como clientes Model
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 class Cliente:
@@ -17,29 +14,23 @@ class Cliente:
         self.is_locador = is_locador
         self.cpf = cpf
         self.endereco = endereco
-        self.historico_aluguel = historico_aluguel
-        self.locacao_atual = locacao_atual
         self.historico_aluguel = historico_aluguel if historico_aluguel else []
         self.locacao_atual = locacao_atual
 
-    def __repr__(self):
-        return (f"Cliente(id={self.id}, name='{self.name}', email='{self.email}', "
-                f"password='{self.password}', telephone='{self.telephone}',"
-                f"is_locador='{self.is_locador}', cpf='{self.cpf}',"
-                f"endereco='{self.endereco}', historico_aluguel='{self.historico_aluguel}',"
-                f"locacao_atual='{self.locacao_atual}')")
-
     def to_dict(self):
-
         locacao_atual_dict = None
         if self.locacao_atual:
-            #Pega o atributo (locação) e transforma em dicionário
-            locacao_atual_dict = self.locacao_atual.to_dict()
+            if hasattr(self.locacao_atual, 'to_dict'):
+                locacao_atual_dict = self.locacao_atual.to_dict()
+            else:
+                locacao_atual_dict = self.locacao_atual
 
         historico_list = []
         for locacao in self.historico_aluguel:
-            #Trasforma todas as locações do atribto e também transforma em dicionário
-            historico_list.append(locacao.to_dict())
+            if hasattr(locacao, 'to_dict'):
+                historico_list.append(locacao.to_dict())
+            else:
+                historico_list.append(locacao)
 
         return {
             'id': self.id,
@@ -56,15 +47,12 @@ class Cliente:
 
     @classmethod
     def from_dict(cls, data):
-
         locacao_obj = None
         if data.get('locacao_atual'):
-            # Transforma o dicionário de locação atual em Objeto
             locacao_obj = Locacao.from_dict(data['locacao_atual']) 
 
         historico_objs = []
         if data.get('historico_aluguel'):
-            # Mesma coisa
             for item in data['historico_aluguel']:
                 historico_objs.append(Locacao.from_dict(item))
 
@@ -78,9 +66,8 @@ class Cliente:
             cpf=data['cpf'],
             endereco=data['endereco'],
             historico_aluguel=historico_objs, 
-            locacao_atual=locacao_obj         
+            locacao_atual=locacao_obj        
         )
-
 
 class ClienteModel:
     FILE_PATH = os.path.join(DATA_DIR, 'clientes.json')
@@ -91,12 +78,18 @@ class ClienteModel:
     def _load(self):
         if not os.path.exists(self.FILE_PATH):
             return []
-        with open(self.FILE_PATH, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            # JSON é meio burro, então ele pegaria o Objeto Locação e trasnformaria em um dicionário, e não em Objeto
-            return [Cliente.from_dict(item) for item in data]
+        try:
+            with open(self.FILE_PATH, 'r', encoding='utf-8') as f:
+                content = f.read()
+                if not content: return []
+                data = json.loads(content)
+                return [Cliente.from_dict(item) for item in data]
+        except Exception:
+            return []
 
     def _save(self):
+        if not os.path.exists(DATA_DIR):
+            os.makedirs(DATA_DIR)
         with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
             json.dump([c.to_dict() for c in self.clientes], f, indent=4, ensure_ascii=False)
 

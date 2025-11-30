@@ -8,7 +8,7 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 #Classe dos veículos
 
 class Vehicle:
-    def __init__(self, id, placa, marca, modelo, ano, quilometragem, status, avaliacao, n_avaliacoes,  is_disponivel, preco_diaria):
+    def __init__(self, id, placa, marca, modelo, ano, quilometragem, status, is_disponivel, preco_diaria):
         self.id = id
         self.placa = placa
         self.marca = marca
@@ -16,8 +16,6 @@ class Vehicle:
         self.ano = ano
         self.quilometragem = quilometragem
         self.status = status
-        self.avaliacao = avaliacao
-        self.n_avaliacoes = n_avaliacoes
         self.is_disponivel = is_disponivel
         self.preco_diaria = preco_diaria
 
@@ -25,7 +23,6 @@ class Vehicle:
         return (f"Vehicle(id={self.id}, placa='{self.placa}', marca='{self.marca}', "
                 f"modelo='{self.modelo}', ano='{self.ano}',"
                 f"quilometragem='{self.quilometragem}', status='{self.status}',"
-                f"avaliacao='{self.avaliacao}', n_avaliacoes='{self.n_avaliacoes}',"
                 f"is_disponivel='{self.is_disponivel}', preco_diaria='{self.preco_diaria}')")
     
     def to_dict(self):
@@ -37,8 +34,6 @@ class Vehicle:
             'ano' : self.ano,
             'quilometragem' : self.quilometragem,
             'status' : self.status,
-            'avaliacao' : self.avaliacao,
-            'n_avaliacoes' : self.n_avaliacoes,
             'is_disponivel' : self.is_disponivel,
             'preco_diaria' : self.preco_diaria
         }
@@ -53,8 +48,6 @@ class Vehicle:
             ano=data['ano'],
             quilometragem=data['quilometragem'],
             status=data['status'],
-            avaliacao=data['avaliacao'],
-            n_avaliacoes=data['n_avaliacoes'],
             is_disponivel=data['is_disponivel'],
             preco_diaria=data['preco_diaria']
         )
