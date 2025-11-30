@@ -43,6 +43,9 @@
                         % end
                     </td>
                     <td class="actions">
+                        <a href="/locador/veiculo/edit/{{v.id}}" class="btn btn-sm" style="color: #f39c12; margin-right: 10px;">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
                         <a href="/locador/veiculo/delete/{{v.id}}" 
                            onclick="return confirm('Tem certeza que deseja remover este veículo?')"
                            class="btn btn-sm btn-danger" style="color: #c0392b;">

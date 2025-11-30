@@ -5,12 +5,12 @@ class VehicleService:
         self.model = VehicleModel()
 
     def _gerar_id(self):
+        self.model.vehicles = self.model._load()
         todos = self.model.get_all()
         if not todos: return 1
         return max([v.id for v in todos]) + 1
 
     def create_vehicle(self, dados_veiculo):
-        # Gera ID e Cria o Objeto
         novo_id = self._gerar_id()
         
         novo_veiculo = Vehicle(
@@ -28,10 +28,28 @@ class VehicleService:
         self.model.add(novo_veiculo)
         return novo_veiculo
 
-    def get_all(self):
-        return self.model.get_all()
+    def update_vehicle(self, veiculo_id, dados):
+        self.model.vehicles = self.model._load()
+        veiculo = self.model.get_by_id(veiculo_id)
+        
+        if veiculo:
+            veiculo.placa = dados['placa']
+            veiculo.marca = dados['marca']
+            veiculo.modelo = dados['modelo']
+            veiculo.ano = int(dados['ano'])
+            veiculo.quilometragem = float(dados['quilometragem'])
+            veiculo.preco_diaria = float(dados['preco_diaria'])
+            
+            self.model.update(veiculo)
+            return veiculo
+        return None
+
+    def get_by_id(self, veiculo_id):
+        self.model.vehicles = self.model._load()
+        return self.model.get_by_id(veiculo_id)
 
     def get_available(self):
+        self.model.vehicles = self.model._load() 
         return [v for v in self.model.get_all() if v.is_disponivel]
 
     def delete_vehicle(self, veiculo_id):

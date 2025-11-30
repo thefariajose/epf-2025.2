@@ -16,8 +16,7 @@ class LocadorService:
         self.user_model.users = self.user_model._load()
         user_base = self.user_model.get_by_id(user_id)
         
-        if not user_base:
-            return None
+        if not user_base: return None
 
         self.locador_model.locadores = self.locador_model._load()
         locador_existente = self.locador_model.get_by_id(user_id)
@@ -49,6 +48,17 @@ class LocadorService:
         
         if locador:
             locador.veiculos.append(veiculo_obj)
+            self.locador_model.update_locador(locador)
+
+    def atualizar_veiculo_vinculado(self, user_id, veiculo_atualizado):
+        self.locador_model.locadores = self.locador_model._load()
+        locador = self.get_by_id(user_id)
+        
+        if locador:
+            for i, v in enumerate(locador.veiculos):
+                if v.id == veiculo_atualizado.id:
+                    locador.veiculos[i] = veiculo_atualizado
+                    break
             self.locador_model.update_locador(locador)
 
     def desvincular_veiculo(self, user_id, veiculo_id):
