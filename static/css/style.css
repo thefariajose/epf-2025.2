@@ -35,3 +35,140 @@ body {
   box-shadow: var(--shadow);
 }
 
+.users-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* espaço entre linhas */
+}
+
+.users-table thead tr {
+    background-color: #f4f6f8;
+    border-radius: 8px;
+}
+
+.users-table th {
+    text-align: left;
+    padding: 14px 18px;
+    font-weight: 700;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.users-table tbody tr {
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    border-radius: 8px;
+}
+
+.users-table td {
+    padding: 14px 18px;
+    font-size: 0.92rem;
+    color: #444;
+}
+
+/* Efeito zebra */
+.users-table tbody tr:nth-child(even) {
+    background-color: #f9fbfc;
+}
+
+/* Hover suave */
+.users-table tbody tr:hover {
+    transform: scale(1.01);
+    transition: 0.15s ease;
+}
+
+.tag {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.tag-green {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tag-gray {
+    background: #eceff1;
+    color: #37474f;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inline-form {
+    display: inline-block;
+    margin: 0;
+}
+
+.btn-sm {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.form-subtitle {
+    font-size: 0.95rem;
+    color: #666;
+    margin-top: -6px;
+}
+
+.styled-form .form-group {
+    margin-bottom: 18px;
+}
+
+.styled-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.styled-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: 1px solid #ccd1d7;
+    font-size: 1rem;
+    transition: 0.2s ease;
+}
+
+.styled-form input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 4px rgba(52, 152, 219, 0.4);
+    outline: none;
+}
+
+.form-submit {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+}
+
+
+
+
