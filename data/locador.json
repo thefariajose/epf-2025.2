@@ -1,25 +1,13 @@
 [
     {
         "id": 1,
-        "name": "Messi",
+        "name": "Messiii",
         "email": "locador@teste.com",
         "password": "123",
         "telephone": "21 98764 3214",
         "is_locador": true,
         "cnpj": "09826567211",
-        "veiculos": [
-            {
-                "id": 1,
-                "placa": "ABC-1234",
-                "marca": "Fiat",
-                "modelo": "Uno Mile",
-                "ano": 2020,
-                "quilometragem": 0.0,
-                "status": "disponivel",
-                "is_disponivel": true,
-                "preco_diaria": 100.0
-            }
-        ],
+        "veiculos": [],
         "historico_locacoes": []
     }
 ]
