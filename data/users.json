@@ -1,14 +1,14 @@
 [
     {
-        "id": 1,
-        "email": "",
-        "password": "",
+        "id": 3,
+        "email": "emailjosebagre@gmail.com",
+        "password": "123456789",
         "is_locador": true
     },
     {
-        "id": 2,
-        "email": "",
-        "password": "",
+        "id": 4,
+        "email": "flamengotetra@gmail.com",
+        "password": "1981",
         "is_locador": true
     }
 ]
