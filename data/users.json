@@ -1,14 +1,14 @@
 [
     {
-        "id": 3,
-        "email": "emailteste@gmail.com",
-        "password": "123456789",
-        "is_locador": false
+        "id": 1,
+        "email": "",
+        "password": "",
+        "is_locador": true
     },
     {
-        "id": 4,
-        "email": "exemplo@gmail.com",
-        "password": "senhasegura",
+        "id": 2,
+        "email": "",
+        "password": "",
         "is_locador": true
     }
 ]
