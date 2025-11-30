@@ -9,7 +9,7 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 
 class Locador:
-    def __init__(self, id, name, email, password, telephone, is_locador, cnpj, veiculos : list, historico_locacoes : list, avaliacao,  n_avaliacoes):
+    def __init__(self, id, name, email, password, telephone, is_locador, cnpj, veiculos : list, historico_locacoes : list):
         self.id = id
         self.name = name
         self.email = email
@@ -19,16 +19,14 @@ class Locador:
         self.cnpj = cnpj
         self.veiculos = veiculos if veiculos else []
         self.historico_locacoes = historico_locacoes if historico_locacoes else []
-        self.avaliacao = avaliacao
-        self.n_avaliacoes = n_avaliacoes
+       
 
 
     def __repr__(self):
         return (f"Locador(id={self.id}, name='{self.name}', email='{self.email}',"
                 f"password='{self.password}', telephone='{self.telephone}',"
                 f"is_locador='{self.is_locador}', cnpj='{self.cnpj}',"
-                f"veiculos='{self.veiculos}', historico_locacoes='{self.historico_locacoes}',"
-                f"avaliacao='{self.avaliacao}', n_avaliacoes='{self.n_avaliacoes}')")
+                f"veiculos='{self.veiculos}', historico_locacoes='{self.historico_locacoes}'")
 
     def to_dict(self):
         # 1. Lista de objetos Vehicle -> Lista de dicionários
@@ -50,9 +48,7 @@ class Locador:
             'is_locador': self.is_locador,
             'cnpj': self.cnpj,
             'veiculos': veiculos_list,
-            'historico_locacoes': locacoes_list,
-            'avaliacao' : self.avaliacao,
-            'n_avaliacoes': self.n_avaliacoes
+            'historico_locacoes': locacoes_list
         }
 
     @classmethod
@@ -79,9 +75,7 @@ class Locador:
             is_locador=data['is_locador'],
             cnpj=data['cnpj'],
             veiculos=veiculos_objs,           
-            historico_locacoes=locacoes_objs, 
-            avaliacao=data['avaliacao'],
-            n_avaliacoes=data['n_avaliacoes']
+            historico_locacoes=locacoes_objs
         )
 
 
