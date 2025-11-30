@@ -108,7 +108,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2025, Meu Projeto. Todos os direitos reservados.</p>
+        <p>&copy; 2025, CaRent. Todos os direitos reservados.</p>
     </footer>
 
     <script src="/static/js/main.js"></script>
