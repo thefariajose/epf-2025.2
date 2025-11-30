@@ -4,38 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Bottle - {{title or 'Sistema'}}</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="/static/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <style>
-        /* Estilo rápido para o Menu */
-        nav {
-            background-color: #3498db; /* Mesma cor primária do seu CSS */
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+        /* -----------------------------------------
+           LAYOUT GERAL
+        ----------------------------------------- */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f5f6fa;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #333;
         }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            margin: 40px 0;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* -----------------------------------------
+           MENU SUPERIOR
+        ----------------------------------------- */
+        nav {
+            background-color: #3498db;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             margin: 0;
             padding: 0;
         }
+
         nav a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1.1rem;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background 0.3s;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
         nav a:hover {
-            background-color: rgba(255,255,255,0.2);
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        nav a i {
+            font-size: 1.1rem;
         }
     </style>
+
 </head>
 <body>
 
@@ -51,7 +97,8 @@
     </nav>
 
     <div class="container">
-        {{!base}}  </div>
+        {{!base}}
+    </div>
 
     <footer>
         <p>&copy; 2025, Meu Projeto. Todos os direitos reservados.</p>
