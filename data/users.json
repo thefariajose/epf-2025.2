@@ -1,19 +1,5 @@
 [
     {
-<<<<<<< HEAD
-        "id": 3,
-        "email": "emailjosebagre@gmail.com",
-        "password": "123456789",
-        "is_locador": true
-    },
-    {
-        "id": 4,
-        "email": "flamengotetra@gmail.com",
-        "password": "1981",
-        "is_locador": true
-    }
-]
-=======
         "id": 1,
         "email": "locador@teste.com",
         "password": "123",
@@ -26,4 +12,3 @@
         "is_locador": false
     }
 ]
->>>>>>> main
