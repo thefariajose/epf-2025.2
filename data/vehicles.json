@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "id": 1,
+        "placa": "ABC-1234",
+        "marca": "Fiat",
+        "modelo": "Uno Mile",
+        "ano": 2020,
+        "quilometragem": 0.0,
+        "status": "disponivel",
+        "is_disponivel": true,
+        "preco_diaria": 100.0
+    }
+]
