@@ -1,9 +1,6 @@
 % rebase('layout.tpl', title='Gerenciar Veículo')
 
 <style>
-    /* -----------------------------------------
-       ESTILOS ESPECÍFICOS DO FORMULÁRIO DE VEÍCULO
-    ----------------------------------------- */
     
     /* Contêiner de formulário centralizado */
     .form-page-wrapper {
