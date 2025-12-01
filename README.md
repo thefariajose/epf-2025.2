@@ -5,7 +5,7 @@
 ### Isaque Victor Palhares Silva - 251022383
 ### José Luiz Barros Faria - 242015862
 ---
-Este é um projeto de sistema de gerenciamento e solicitação de aluguel de veículos, desenvolvido em **Python** utilizando o framework **Bottle**. O sistema é segue o padrão **MVC (Model-View-Controller)** e utiliza arquivos **JSON** para persistência de dados.
+Este é um projeto de sistema de gerenciamento e solicitação de aluguel de veículos, desenvolvido em **Python** utilizando o framework **Bottle**. O sistema segue o padrão **MVC (Model-View-Controller)** e utiliza arquivos **JSON** para persistência de dados.
 
 O foco foi no desenvolvimento de uma interface de usuário clara e intuitiva para Locadores e Clientes.
 
