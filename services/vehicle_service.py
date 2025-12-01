@@ -52,7 +52,11 @@ class VehicleService:
         return self.model.get_by_id(veiculo_id)
 
     def get_available(self):
-        return [v for v in self.model.get_all() if v.is_disponivel]
+        veiculos_disponiveis = []
+        for v in self.model.get_all():
+            if v.is_disponivel:
+                veiculos_disponiveis.append(v)
+        return veiculos_disponiveis
 
     def delete_vehicle(self, veiculo_id):
         self.model.delete(veiculo_id)

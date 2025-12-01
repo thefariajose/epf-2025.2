@@ -11,7 +11,7 @@ class ClienteController(BaseController):
         self.vehicle_service = VehicleService()
         self.locacao_service = LocacaoService()
         self.setup_routes()
-
+    #rotas definidas
     def setup_routes(self):
         self.app.route('/cliente/vitrine', method='GET', callback=self.vitrine)
         self.app.route('/cliente/perfil', method=['GET', 'POST'], callback=self.perfil)
@@ -23,7 +23,7 @@ class ClienteController(BaseController):
         uid = request.get_cookie("user_id", secret='secret_key')
         if uid: return int(uid)
         return None
-
+    #aqui pega a mostra o perfil para poder ser alterado do cliente e os carros disponiveis
     def vitrine(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
@@ -32,7 +32,8 @@ class ClienteController(BaseController):
             return redirect('/cliente/perfil')
         carros_disponiveis = self.vehicle_service.get_available()
         return self.render('cliente_vitrine', carros=carros_disponiveis, cliente=cliente)
-
+    #dentro do perfil cria ou atualiza, verifica também caso ocorra algum erro fica redirecionando
+    #a pagina até não obter mais erro, erros relacionados a por exemplo cpf cm menos digitos e telefone
     def perfil(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
@@ -54,7 +55,9 @@ class ClienteController(BaseController):
         else:
             cliente = self.cliente_service.get_by_id(user_id)
             return self.render('cliente_form', cliente=cliente)
-        
+    #solicitar alugul, mostra o valor do veiculo se ta disponivel ou não, tenta criar a solicitação
+    #caso não conseuge faz a exception e mostra a mensagem
+
     def solicitar_aluguel(self, veiculo_id):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
@@ -78,7 +81,7 @@ class ClienteController(BaseController):
                 traceback.print_exc()
                 return f"Erro ao solicitar aluguel: {str(e)}"
             return redirect('/cliente/meus_alugueis')
-    
+    #mostra os alugueis feitos pelo cliente no get by cliente
     def meus_alugueis(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
@@ -88,7 +91,7 @@ class ClienteController(BaseController):
             carro = self.vehicle_service.get_by_id(l.veiculo_id)
             dados_completos.append({'locacao': l, 'carro': carro})
         return self.render('meus_alugueis', dados=dados_completos)
-
+    #pode terminar o aluguel e devolver o carro
     def concluir_aluguel(self, locacao_id):
         self.locacao_service.alterar_status(locacao_id, 'concluido')
         return redirect('/cliente/meus_alugueis')

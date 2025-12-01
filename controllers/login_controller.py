@@ -7,11 +7,14 @@ class LoginController(BaseController):
         super().__init__(app)
         self.login_service = LoginService()
         self.setup_routes()
-
+        #rotas definidas
     def setup_routes(self):
         self.app.route('/login', method=['GET', 'POST'], callback=self.login)
         self.app.route('/logout', method='GET', callback=self.logout)
-
+    #utilização do autenticate na pagina inicial, dependendo do atributo do is locador
+    #redireciona para ou uma pagina ou outra
+    #também cria um cooke, se o usuário existe, salva o id  e salva a secret key, que é um código
+    #que adiciona ao id uma assinatura que gera mais segurança
     def login(self):
         if request.method == 'GET':
             return self.render('login')
@@ -26,7 +29,7 @@ class LoginController(BaseController):
                     return self.redirect('/cliente/vitrine') 
             else:
                 return self.render('login', error="Email ou senha incorretos")
-
+    #opção de deletar o cookie e o id, para que o login possa ser refeito
     def logout(self):
         response.delete_cookie("user_id")
         return self.redirect('/login')

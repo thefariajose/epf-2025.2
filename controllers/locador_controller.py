@@ -11,7 +11,8 @@ class LocadorController(BaseController):
         self.vehicle_service = VehicleService()
         self.locacao_service = LocacaoService()
         self.setup_routes()
-
+    
+        #rotas definidas
     def setup_routes(self):
         self.app.route('/dashboard-locador', method='GET', callback=self.dashboard)
         self.app.route('/locador/perfil', method=['GET', 'POST'], callback=self.perfil)
@@ -25,18 +26,23 @@ class LocadorController(BaseController):
         uid = request.get_cookie("user_id", secret='secret_key')
         if uid: return int(uid)
         return None
-
+    #pagina inicial do locador, pega a área de perfil, solicitações e histórico
     def dashboard(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
         locador = self.locador_service.get_by_id(user_id)
         if not locador: return redirect('/locador/perfil')   
         todas_locacoes = self.locacao_service.get_by_locador(user_id)
-        solicitacoes = [l for l in todas_locacoes if l.status == 'em_negociacao'] #avançado
-        historico = [l for l in todas_locacoes if l.status != 'em_negociacao'] #avançado
+        solicitacoes = []
+        historico = []
+        for l in todas_locacoes:
+            if l.status == 'em_negociacao':
+                solicitacoes.append(l)
+            else:
+                historico.append(l)
         
         return self.render('dashboard_locador', locador=locador, solicitacoes=solicitacoes, historico=historico)
-
+    #semelhante ao perfil do cliente, enquanto não parar de dar erro de digitos no cnpj ou telefone permanece na tela
     def perfil(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
@@ -55,7 +61,8 @@ class LocadorController(BaseController):
         else:
             locador = self.locador_service.get_by_id(user_id)
             return self.render('locador_form', locador=locador)
-
+    #opção de adicionar veículo, com todos os atributos da parte veículos, caso tenha alguma exceção redireciona
+    #para a pagina inicial do locador
     def add_veiculo(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
@@ -77,11 +84,11 @@ class LocadorController(BaseController):
             return redirect('/dashboard-locador')
         else:
             return self.render('veiculo_form', veiculo=None, action='/locador/veiculo/add')
-
+    #opção de editar veículos, mesma questão da excessão, se for post altera os valores dos atributos e att o veiculo
+    #caso não mantém o mesmo e mostra
     def edit_veiculo(self, id):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
-
         if request.method == 'POST':
             try:
                 dados = {
@@ -109,13 +116,13 @@ class LocadorController(BaseController):
             self.vehicle_service.delete_vehicle(id)
             self.locador_service.desvincular_veiculo(user_id, id)
         return redirect('/dashboard-locador')
-    
+    #opção de alterar status como aceito
     def aceitar_aluguel(self, id):
         user_id = self._get_user_id()
         if user_id:
             self.locacao_service.alterar_status(id, 'aceito')
         return redirect('/dashboard-locador')
-
+    #opção de alterar o status como rejeitado
     def rejeitar_aluguel(self, id):
         user_id = self._get_user_id()
         if user_id:

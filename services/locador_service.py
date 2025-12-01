@@ -8,12 +8,14 @@ class LocadorService:
 
     def get_by_id(self, user_id):
         return self.locador_model.get_by_id(user_id)
-
+#Verifica o numero de digitos do CNPJ e telefone, além de ter que serem núnmeros
+#Nesse código também salva e permite editar o locador, se o locador já existe ele dá
+#update, caso não cria um novo numa lista
     def criar_ou_atualizar(self, user_id, nome, telefone, cnpj):
         if not (cnpj.isdigit() and len(cnpj) == 14):
             raise Exception("CNPJ inválido (14 dígitos).")
         if not (telefone.isdigit() and len(telefone) == 11):
-            raise Exception("Telefone inválido.")
+            raise Exception("Telefone inválido. (11 dígitos)")
         locador = self.locador_model.get_by_id(user_id)
         if locador:
             locador.name = nome
@@ -36,13 +38,13 @@ class LocadorService:
             )
             self.locador_model.add(novo_locador)
             return novo_locador
-
+    #vincula um veículo que foi criado ao locador
     def vincular_veiculo(self, user_id, veiculo_obj):
         locador = self.get_by_id(user_id)
         if locador:
             locador.veiculos.append(veiculo_obj)
             self.locador_model.update(locador)
-
+    #permite atualizar as informações do veículo vinculado
     def atualizar_veiculo_vinculado(self, user_id, veiculo_atualizado):
         locador = self.get_by_id(user_id)
         if locador:
@@ -51,7 +53,7 @@ class LocadorService:
                     locador.veiculos[i] = veiculo_atualizado
                     break
             self.locador_model.update(locador)
-
+    #poder desvincular tambéms
     def desvincular_veiculo(self, user_id, veiculo_id):
         locador = self.get_by_id(user_id)
         if locador:

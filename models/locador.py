@@ -1,11 +1,12 @@
 from .basemodel import BasePerfil, BaseModel
 
 class Locador(BasePerfil):
+    #Constructor
     def __init__(self, id, name, email, password, telephone, is_locador, cnpj, veiculos=None):
         super().__init__(id, name, email, password, telephone, is_locador)
         self.cnpj = cnpj
         self.veiculos = veiculos if veiculos else []
-
+    #semelhante a cliente
     def to_dict(self):
         data = self.__dict__.copy()
         data['veiculos'] = [v.to_dict() if hasattr(v, 'to_dict') else v for v in self.veiculos]

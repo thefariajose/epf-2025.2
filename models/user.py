@@ -1,6 +1,7 @@
 from .basemodel import BaseModel, Base
 
 class User(Base):
+    #Constructor
     def __init__(self, id, email, password, is_locador):
         super().__init__(id)
         self.email = email
@@ -17,7 +18,7 @@ class User(Base):
 class UserModel(BaseModel):
     def __init__(self):
         super().__init__('users.json', User)
-
+    #pega o usuário pelo email, no lugar do id, importante na mecanica do email
     def get_by_email(self, email):
         self.data = self._load()
         return next((u for u in self.data if u.email == email), None)
