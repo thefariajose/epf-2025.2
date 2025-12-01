@@ -1,4 +1,4 @@
-from bottle import Bottle
+from bottle import Bottle, static_file
 from config import Config
 
 class App:
