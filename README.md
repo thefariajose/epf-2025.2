@@ -1,105 +1,49 @@
-# Projeto Template: POO com Python + Bottle + JSON
+# 🚗 CarRENT: Sistema de Aluguel de Veículos
 
-Este é um projeto de template educacional voltado para o ensino de **Programação Orientada a Objetos (POO)** do Prof. Lucas Boaventura, Universidade de Brasília (UnB).
+Este é um projeto de sistema de gerenciamento e solicitação de aluguel de veículos, desenvolvido em **Python** utilizando o framework **Bottle**. O sistema é segue o padrão **MVC (Model-View-Controller)** e utiliza arquivos **JSON** para persistência de dados.
 
-Utiliza o microframework **Bottle**. Ideal para uso em disciplinas introdutórias de Engenharia de Software ou Ciência da Computação.
-
-## 💡 Objetivo
-
-Fornecer uma base simples, extensível e didática para construção de aplicações web orientadas a objetos com aplicações WEB em Python, ideal para trabalhos finais ou exercícios práticos.
+O foco foi no desenvolvimento de uma interface de usuário clara e intuitiva para Locadores e Clientes.
 
 ---
 
-## 🗂 Estrutura de Pastas
+## 💻 Estrutura do Projeto
 
-```bash
-poo-python-bottle-template/
-├── app.py # Ponto de entrada do sistema
-├── config.py # Configurações e caminhos do projeto
-├── main.py # Inicialização da aplicação
-├── requirements.txt # Dependências do projeto
-├── README.md # Este arquivo
-├── controllers/ # Controladores e rotas
-├── models/ # Definição das entidades (ex: User)
-├── services/ # Lógica de persistência (JSON)
-├── views/ # Arquivos HTML (Bottle Templating)
-├── static/ # CSS, JS e imagens
-├── data/ # Arquivos JSON de dados
-└── .vscode/ # Configurações opcionais do VS Code
-```
+A arquitetura do projeto é dividida em módulos bem definidos, facilitando a manutenção e a aplicação dos princípios de Orientação a Objetos.
 
+| Pasta/Módulo | Descrição |
+| :--- | :--- |
+| **`controllers/`** | Responsável por receber as requisições (rotas) e coordenar a interação entre o Modelo e o Serviço, preparando os dados para a `view`. |
+| **`models/`** | Contém as classes de entidades do sistema (`Cliente`, `Locador`, `Veiculo`, `Locacao`), aplicando os conceitos de POO. |
+| **`services/`** | Contém a lógica de negócio principal, a validação de dados e o controle da persistência (leitura/escrita dos arquivos JSON). |
+| **`data/`** | Armazena todos os dados da aplicação em formato JSON (ex: `clientes.json`, `veiculos.json`, `locacoes.json`). |
+| **`views/`** | Contém os templates HTML da aplicação (`.tpl`), renderizados pelo framework Bottle. |
+| **`static/`** | Contém os arquivos estáticos (CSS, JS, Imagens) que definem o visual do sistema. |
 
 ---
 
-## 📁 Descrição das Pastas
+## ✨ Funcionalidades Chave
 
-### `controllers/`
-Contém as classes responsáveis por lidar com as rotas da aplicação. Exemplos:
-- `user_controller.py`: rotas para listagem, adição, edição e remoção de usuários.
-- `base_controller.py`: classe base com utilitários comuns.
+### 👤 Cliente
+* **Vitrine:** Visualização de todos os veículos disponíveis para locação.
+* **Solicitação de Aluguel:** Envio de pedidos de locação com período de data.
+* **Meus Aluguéis:** Acompanhamento do status dos pedidos (*Em Negociação*, *Alugado*, *Cancelado*).
 
-### `models/`
-Define as classes que representam os dados da aplicação. Exemplo:
-- `user.py`: classe `User`, com atributos como `id`, `name`, `email`, etc.
-
-### `services/`
-Responsável por salvar, carregar e manipular dados usando arquivos JSON. Exemplo:
-- `user_service.py`: contém métodos como `get_all`, `add_user`, `delete_user`.
-
-### `views/`
-Contém os arquivos `.tpl` utilizados pelo Bottle como páginas HTML:
-- `layout.tpl`: estrutura base com navegação e bloco `content`.
-- `users.tpl`: lista os usuários.
-- `user_form.tpl`: formulário para adicionar/editar usuário.
-
-### `static/`
-Arquivos estáticos como:
-- `css/style.css`: estilos básicos.
-- `js/main.js`: scripts JS opcionais.
-- `img/BottleLogo.png`: exemplo de imagem.
-
-### `data/`
-Armazena os arquivos `.json` que simulam o banco de dados:
-- `users.json`: onde os dados dos usuários são persistidos.
+### 💼 Locador
+* **Painel de Controle:** Visualização de todas as solicitações de aluguel pendentes.
+* **Gestão de Frota:** Cadastro, edição e remoção de veículos.
+* **Aprovação/Rejeição:** Resposta direta e gerenciamento das solicitações de locação.
 
 ---
 
-## ▶️ Como Executar
+## ⚙️ Configuração e Instalação
 
-1. Crie o ambiente virtual na pasta fora do seu projeto:
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\\Scripts\\activate     # Windows
-```
+### 1. Pré-requisitos
+* **Python 3.x**
+* **pip** (Gerenciador de pacotes do Python)
 
-2. Entre dentro do seu projeto criado a partir do template e instale as dependências:
+### 2. Instalar Dependências
+
+Instale todas as bibliotecas necessárias listadas no `requirements.txt`:
+
 ```bash
 pip install -r requirements.txt
-```
-
-3. Rode a aplicação:
-```bash
-python main.py
-```
-
-4. Accese sua aplicação no navegador em: [http://localhost:8080](http://localhost:8080)
-
----
-
-## ✍️ Personalização
-Para adicionar novos modelos (ex: Atividades):
-
-1. Crie a classe no diretório **models/**.
-
-2. Crie o service correspondente para manipulação do JSON.
-
-3. Crie o controller com as rotas.
-
-4. Crie as views .tpl associadas.
-
----
-
-## 🧠 Autor e Licença
-Projeto desenvolvido como template didático para disciplinas de Programação Orientada a Objetos, baseado no [BMVC](https://github.com/hgmachine/bmvc_start_from_this).
-Você pode reutilizar, modificar e compartilhar livremente.
