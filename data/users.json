@@ -1,14 +1,14 @@
 [
     {
         "id": 1,
-        "email": "locador@teste.com",
-        "password": "123",
-        "is_locador": true
-    },
-    {
-        "id": 2,
         "email": "cliente@teste.com",
         "password": "123",
         "is_locador": false
+    },
+    {
+        "id": 2,
+        "email": "locador@teste.com",
+        "password": "123",
+        "is_locador": true
     }
 ]

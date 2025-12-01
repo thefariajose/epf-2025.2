@@ -10,34 +10,63 @@ class LocacaoService:
         self.vehicle_model = VehicleModel()
 
     def _get_locador_by_vehicle_id(self, vehicle_id):
+        # Busca qual locador possui o veículo com este ID
         self.locador_model.locadores = self.locador_model._load()
         for locador in self.locador_model.get_all():
+            if not locador.veiculos: continue # Pula se não tiver veículos
+            
             for veiculo in locador.veiculos:
                 if veiculo.id == vehicle_id:
                     return locador
         return None
 
     def calcular_total(self, data_inicio_str, data_fim_str, preco_diaria):
-        d1 = datetime.strptime(data_inicio_str, '%Y-%m-%d')
-        d2 = datetime.strptime(data_fim_str, '%Y-%m-%d')
-        
-        dias = (d2 - d1).days
-        if dias < 1: dias = 1 
-        
-        total = (dias * preco_diaria) * 1.3
-        return round(total, 2)
+        # 1. Validação básica se os campos vieram vazios
+        if not data_inicio_str or not data_fim_str:
+            raise Exception("As datas de início e fim são obrigatórias.")
+
+        try:
+            # 2. Converte string (YYYY-MM-DD) para objeto de data real
+            d1 = datetime.strptime(data_inicio_str, '%Y-%m-%d')
+            d2 = datetime.strptime(data_fim_str, '%Y-%m-%d')
+            
+            # 3. Calcula a diferença de dias
+            dias = (d2 - d1).days
+            
+            if dias < 0:
+                raise Exception("A data final não pode ser anterior à data inicial.")
+            
+            if dias == 0: 
+                dias = 1 # Cobra pelo menos 1 dia
+            
+            # 4. Garante que o preço é um número (float) e calcula
+            preco = float(preco_diaria)
+            
+            # Cálculo: (Dias * Preço) + 30%
+            total = (dias * preco) * 1.3
+            
+            return round(total, 2)
+            
+        except ValueError:
+            # Erro comum se a data vier em formato errado
+            raise Exception("Formato de data inválido ou erro no cálculo.")
 
     def criar_solicitacao(self, client_id, vehicle_id, data_inicio, data_fim):
+        # 1. Busca veículo atualizado
+        self.vehicle_model.vehicles = self.vehicle_model._load()
         veiculo = self.vehicle_model.get_by_id(vehicle_id)
         if not veiculo: raise Exception("Veículo não encontrado")
 
+        # 2. Busca o dono do veículo (Locador)
         locador = self._get_locador_by_vehicle_id(vehicle_id)
-        if not locador: raise Exception("Locador não encontrado para este veículo")
+        if not locador: 
+            # DICA: Isso acontece se você apagou o locador mas não o vehicle.json
+            raise Exception("ERRO CRÍTICO: Locador não encontrado para este veículo. Limpe os dados em data/.")
 
-
+        # 3. Calcula preço usando a função corrigida
         valor_total = self.calcular_total(data_inicio, data_fim, veiculo.preco_diaria)
 
-
+        # 4. Gera ID e cria Locação
         self.locacao_model.locacoes = self.locacao_model._load()
         last_id = max([l.id for l in self.locacao_model.get_all()], default=0)
         
@@ -52,9 +81,7 @@ class LocacaoService:
             status='em_negociacao'
         )
         
-
         self.locacao_model.add_locacao(nova_locacao)
-        
         return nova_locacao
 
     def get_by_locador(self, locador_id):
@@ -76,7 +103,7 @@ class LocacaoService:
             locacao.status = novo_status
             self.locacao_model.update_locacao(locacao)
             
-            # Lógica de disponibilidade do veículo
+            # Lógica de Disponibilidade do Veículo
             veiculo = self.vehicle_model.get_by_id(locacao.veiculo_id)
             if veiculo:
                 if novo_status == 'aceito':
@@ -86,6 +113,7 @@ class LocacaoService:
                 
                 self.vehicle_model.update(veiculo)
                 
+                # Sincroniza com a lista interna do locador
                 locador = self._get_locador_by_vehicle_id(veiculo.id)
                 if locador:
                     for i, v in enumerate(locador.veiculos):

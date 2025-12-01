@@ -61,9 +61,12 @@ class ClienteController(BaseController):
     def solicitar_aluguel(self, veiculo_id):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
+
         veiculo = self.vehicle_service.get_by_id(veiculo_id)
+        # Verifica se veículo existe e se está disponível
         if not veiculo or not veiculo.is_disponivel:
             return "Veículo indisponível."
+
         if request.method == 'GET':
             return self.render('alugar_veiculo', veiculo=veiculo)
         
@@ -72,15 +75,22 @@ class ClienteController(BaseController):
             data_fim = request.forms.get('data_fim')
             
             try:
+                # Tenta criar a solicitação
                 self.locacao_service.criar_solicitacao(
                     client_id=user_id, 
                     vehicle_id=veiculo_id, 
                     data_inicio=data_inicio, 
                     data_fim=data_fim
                 )
-                return redirect('/cliente/meus_alugueis')
             except Exception as e:
+                # Se der erro REAL (cálculo, banco de dados), cai aqui
+                import traceback
+                traceback.print_exc()
                 return f"Erro ao solicitar aluguel: {str(e)}"
+
+            # Se chegou aqui, é porque deu certo (não entrou no except)
+            # Então fazemos o redirect FORA do try
+            return redirect('/cliente/meus_alugueis')
     
     def meus_alugueis(self):
         user_id = self._get_user_id()
