@@ -1,10 +1,6 @@
 % rebase('layout.tpl', title='Painel do Locador')
 
 <style>
-    /* -----------------------------------------
-       CSS ESSENCIAL (Para o Painel Locador)
-    ----------------------------------------- */
-    
     /* Card de Informações do Locador */
     .locador-card {
         background: white;

@@ -1,9 +1,7 @@
 % rebase('layout.tpl', title='Meus Aluguéis')
 
 <style>
-    /* -----------------------------------------
-       ESTILOS DA TABELA E BADGES (Para funcionar imediatamente)
-    ----------------------------------------- */
+
     
     /* Container para permitir rolagem em telas pequenas */
     .table-responsive {

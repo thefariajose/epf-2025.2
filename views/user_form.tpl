@@ -1,13 +1,13 @@
 % rebase('layout.tpl', title='Gerenciar Usuário')
 
 <style>
-    /* ------- Variáveis Locais (caso não estejam no global ainda) ------- */
+
     :root {
         --primary-color: #163b65; /* Azul Marinho */
         --accent-color: #e67e22;  /* Laranja */
     }
 
-    /* ------- Estilo do Checkbox Personalizado ------- */
+
     .checkbox-group {
         background-color: #f8f9fa;
         padding: 15px;

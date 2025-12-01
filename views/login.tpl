@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* ------- Sobrescrita de Cores para a Marca CarRENT ------- */
         :root {
             /* Azul Marinho da Logo (Car) */
             --primary-color: #163b65; 
@@ -19,7 +18,6 @@
             --accent-color: #e67e22; 
         }
 
-        /* ------- Layout e Fundo ------- */
         body {
             /* Gradiente ajustado para tons de azul marinho e cinza azulado */
             background: linear-gradient(135deg, var(--primary-color), #2c3e50, #bdc3c7);
@@ -39,7 +37,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ------- Ajustes da Logo ------- */
+       
         .logo-container {
             text-align: center;
             margin-bottom: 25px;
@@ -52,13 +50,13 @@
             margin: 0 auto;
         }
 
-        /* ------- Ajustes de Input (Foco no Laranja) ------- */
+        
         .styled-form input:focus {
             border-color: var(--accent-color); /* Foco laranja */
             box-shadow: 0 0 4px rgba(230, 126, 34, 0.4);
         }
 
-        /* ------- Botão Principal ------- */
+        
         .btn-submit {
             background-color: var(--primary-color);
             transition: all 0.3s ease;
@@ -69,7 +67,7 @@
             transform: translateY(-2px);
         }
 
-        /* ------- Toggle Senha ------- */
+        
         .password-toggle {
             position: absolute;
             right: 12px;

@@ -1,9 +1,6 @@
 % rebase('layout.tpl', title='Solicitar Aluguel')
 
 <style>
-    /* -----------------------------------------
-       ESTILOS ESPECÍFICOS DO FORMULÁRIO DE SOLICITAÇÃO
-    ----------------------------------------- */
     
     /* Contêiner de formulário centralizado (reutilizando a classe do template anterior) */
     .form-page-wrapper {

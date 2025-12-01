@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* -----------------------------------------
-           DEFINIÇÃO GLOBAL DA MARCA
-        ----------------------------------------- */
+        
         :root {
             --primary-color: #163b65; /* Azul Marinho (Car) */
             --secondary-color: #2c5282;
@@ -20,9 +18,7 @@
             --text-color: #333;
         }
 
-        /* -----------------------------------------
-           ESTRUTURA DA PÁGINA (Sticky Footer)
-        ----------------------------------------- */
+
         body {
             margin: 0;
             padding: 0;
@@ -43,9 +39,6 @@
             padding: 20px;
         }
 
-        /* -----------------------------------------
-           NAVBAR / MENU SUPERIOR
-        ----------------------------------------- */
         .navbar {
             background-color: var(--primary-color);
             padding: 0 20px;
@@ -119,9 +112,6 @@
             background-color: #c0392b; /* Vermelho */
         }
 
-        /* -----------------------------------------
-           FOOTER
-        ----------------------------------------- */
         footer {
             background-color: #fff;
             text-align: center;
