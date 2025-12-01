@@ -11,7 +11,6 @@
     <style>
         /* -----------------------------------------
            DEFINIÇÃO GLOBAL DA MARCA
-           (Isso garante que todo o site use as cores novas)
         ----------------------------------------- */
         :root {
             --primary-color: #163b65; /* Azul Marinho (Car) */
@@ -42,7 +41,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            /* REMOVIDO: background: white e box-shadow que quebravam o layout */
         }
 
         /* -----------------------------------------
@@ -143,10 +141,9 @@
         </a>
 
         <ul class="nav-links">
-            <li><a href="/dashboard" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-            <li><a href="/users" class="nav-link"><i class="fas fa-users"></i> Usuários</a></li>
-            <li><a href="/cars" class="nav-link"><i class="fas fa-car"></i> Veículos</a></li>
-            <li><a href="/rentals" class="nav-link"><i class="fas fa-calendar-alt"></i> Reservas</a></li>
+            <li>
+                <a href="/users" class="nav-link"><i class="fas fa-users"></i> Usuários</a>
+            </li>
         </ul>
 
         <ul class="nav-links">
@@ -169,10 +166,11 @@
     <script src="/static/js/main.js"></script>
     
     <script>
-        // Simples script para destacar o link atual
+        // Script para destacar o link ativo
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
+            // Verifica se o href do link é a rota atual
             if(link.getAttribute('href') === currentPath) {
                 link.classList.add('active');
             }
