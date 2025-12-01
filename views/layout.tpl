@@ -140,11 +140,6 @@
             <span>Car<span style="color: var(--accent-color);">RENT</span></span>
         </a>
 
-        <ul class="nav-links">
-            <li>
-                <a href="/users" class="nav-link"><i class="fas fa-users"></i> Usuários</a>
-            </li>
-        </ul>
 
         <ul class="nav-links">
             <li>
