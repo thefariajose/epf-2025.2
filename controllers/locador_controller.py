@@ -1,19 +1,18 @@
 
 
 #Contém as Services de Locador e Vehicles
-
-
-
 from bottle import Bottle, request, redirect, response
 from .base_controller import BaseController
 from services.locador_service import LocadorService
 from services.vehicle_service import VehicleService
+from services.locacao_service import LocacaoService
 
 class LocadorController(BaseController):
     def __init__(self, app):
         super().__init__(app)
         self.locador_service = LocadorService()
         self.vehicle_service = VehicleService()
+        self.locacao_service = LocacaoService()
         self.setup_routes()
 
     def setup_routes(self):
@@ -22,6 +21,8 @@ class LocadorController(BaseController):
         self.app.route('/locador/veiculo/add', method=['GET', 'POST'], callback=self.add_veiculo)
         self.app.route('/locador/veiculo/edit/<id:int>', method=['GET', 'POST'], callback=self.edit_veiculo)
         self.app.route('/locador/veiculo/delete/<id:int>', method='GET', callback=self.delete_veiculo)
+        self.app.route('/locador/aluguel/aceitar/<id:int>', method='GET', callback=self.aceitar_aluguel)
+        self.app.route('/locador/aluguel/rejeitar/<id:int>', method='GET', callback=self.rejeitar_aluguel)
 
     def _get_user_id(self):
         uid = request.get_cookie("user_id", secret='secret_key')
@@ -31,11 +32,12 @@ class LocadorController(BaseController):
     def dashboard(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
-
         locador = self.locador_service.get_by_id(user_id)
-        if not locador: return redirect('/locador/perfil')
-            
-        return self.render('dashboard_locador', locador=locador)
+        if not locador: return redirect('/locador/perfil')   
+        todas_locacoes = self.locacao_service.get_by_locador(user_id)
+        solicitacoes = [l for l in todas_locacoes if l.status == 'em_negociacao']
+        historico = [l for l in todas_locacoes if l.status != 'em_negociacao']
+        return self.render('dashboard_locador', locador=locador, solicitacoes=solicitacoes, historico=historico)
 
     def perfil(self):
         user_id = self._get_user_id()
@@ -111,6 +113,18 @@ class LocadorController(BaseController):
         if user_id:
             self.vehicle_service.delete_vehicle(id)
             self.locador_service.desvincular_veiculo(user_id, id)
+        return redirect('/dashboard-locador')
+    
+    def aceitar_aluguel(self, id):
+        user_id = self._get_user_id()
+        if user_id:
+            self.locacao_service.alterar_status(id, 'aceito')
+        return redirect('/dashboard-locador')
+
+    def rejeitar_aluguel(self, id):
+        user_id = self._get_user_id()
+        if user_id:
+            self.locacao_service.alterar_status(id, 'rejeitado')
         return redirect('/dashboard-locador')
 
 locador_routes = Bottle()

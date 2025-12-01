@@ -1,13 +1,13 @@
 [
     {
         "id": 1,
-        "placa": "jew-12354",
-        "marca": "volkswagen",
-        "modelo": "kwid",
-        "ano": 2025,
-        "quilometragem": 100000.0,
+        "placa": "GAM-2019",
+        "marca": "ferrari",
+        "modelo": "italia ",
+        "ano": 2018,
+        "quilometragem": 25000.0,
         "status": "disponivel",
         "is_disponivel": true,
-        "preco_diaria": 50.0
+        "preco_diaria": 2500.0
     }
 ]
