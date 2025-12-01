@@ -5,7 +5,8 @@
         <h1 class="section-title"><i class="fas fa-car-side"></i> Veículos Disponíveis</h1>
         <div style="text-align: right;">
             <span>Olá, {{cliente.name}}!</span> | 
-            <a href="/cliente/perfil">Editar Perfil</a>
+            <a href="/cliente/perfil">Editar Perfil</a> |
+            <a href="/cliente/meus_alugueis" style="font-weight: bold; color: #27ae60;">Meus Aluguéis</a>
         </div>
     </div>
 
@@ -29,10 +30,10 @@
                     <span style="font-size: 18px; font-weight: bold; color: #27ae60;">
                         R$ {{carro.preco_diaria}}<small>/dia</small>
                     </span>
-                    <button onclick="alert('Funcionalidade de aluguel será implementada em breve!')" 
-                            style="background-color: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">
+                    <a href="/cliente/alugar/{{carro.id}}" 
+                       style="background-color: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block;">
                         Alugar
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
