@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistema</title>
+    <title>Login - CarRENT</title>
 
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/style.css" /> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* ------- Layout geral ------- */
+        /* ------- Sobrescrita de Cores para a Marca CarRENT ------- */
+        :root {
+            /* Azul Marinho da Logo (Car) */
+            --primary-color: #163b65; 
+            /* Variação mais clara para hover */
+            --secondary-color: #2c5282; 
+            /* Laranja da Logo (RENT) - Usado para destaques */
+            --accent-color: #e67e22; 
+        }
+
+        /* ------- Layout e Fundo ------- */
         body {
-            background: linear-gradient(135deg, #3498db, #6dd5fa, #ffffff);
+            /* Gradiente ajustado para tons de azul marinho e cinza azulado */
+            background: linear-gradient(135deg, var(--primary-color), #2c3e50, #bdc3c7);
             background-size: 200% 200%;
-            animation: gradientMove 6s ease infinite;
+            animation: gradientMove 8s ease infinite;
             height: 100vh;
             margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: "Segoe UI", Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         @keyframes gradientMove {
@@ -28,167 +39,110 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ------- Card de Login ------- */
-        .login-container {
-            background: #fff;
-            width: 100%;
-            max-width: 430px;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        /* ------- Ajustes da Logo ------- */
+        .logo-container {
             text-align: center;
-            animation: fadeIn 0.6s ease;
+            margin-bottom: 25px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .login-header h1 {
-            margin: 0 0 20px;
-            font-size: 28px;
-            color: #333;
-        }
-
-        .login-header i {
-            color: #3498db;
-            margin-right: 8px;
-        }
-
-        /* ------- Inputs ------- */
-        .form-group {
-            margin-bottom: 18px;
-            text-align: left;
-            position: relative;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 5px;
+        .logo-img {
+            max-width: 180px; /* Tamanho ajustado para o card */
+            height: auto;
             display: block;
+            margin: 0 auto;
         }
 
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 15px;
-            transition: 0.25s ease;
+        /* ------- Ajustes de Input (Foco no Laranja) ------- */
+        .styled-form input:focus {
+            border-color: var(--accent-color); /* Foco laranja */
+            box-shadow: 0 0 4px rgba(230, 126, 34, 0.4);
         }
 
-        .form-group input:focus {
-            border-color: #3498db;
-            box-shadow: 0 0 6px rgba(52,152,219,0.35);
-            outline: none;
-        }
-
-        /* ------- Mostrar/ocultar senha ------- */
-        .password-toggle {
-            position: absolute;
-            right: 12px;
-            top: 40px;
-            cursor: pointer;
-            color: #777;
-            transition: 0.2s ease;
-        }
-
-        .password-toggle:hover {
-            color: #3498db;
-        }
-
-        /* ------- Botão ------- */
+        /* ------- Botão Principal ------- */
         .btn-submit {
-            background: #3498db;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            width: 100%;
-            font-size: 17px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.25s ease;
-            margin-top: 5px;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
         }
 
         .btn-submit:hover {
-            background: #217dbb;
+            background-color: var(--accent-color); /* Hover fica Laranja */
             transform: translateY(-2px);
         }
 
-        /* ------- Erro ------- */
-        .error-msg {
-            background-color: #ffe5e5;
-            color: #c0392b;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 18px;
-            border: 1px solid #f5c6cb;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        .error-msg i {
-            margin-right: 6px;
-        }
-
-        /* ------- Link de registro ------- */
-        .register-link {
-            display: block;
-            margin-top: 18px;
-            color: #3498db;
-            font-weight: bold;
-            text-decoration: none;
+        /* ------- Toggle Senha ------- */
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 40px; 
+            cursor: pointer;
+            color: #999;
             transition: 0.2s ease;
         }
-
-        .register-link:hover {
-            text-decoration: underline;
+        .password-toggle:hover {
+            color: var(--primary-color);
         }
 
-        hr {
-            border: none;
-            border-top: 1px solid #eee;
-            margin: 25px 0;
+        /* ------- Link de Registro ------- */
+        .register-link {
+            color: var(--accent-color); /* Link Laranja */
+        }
+        .register-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="login-container">
-        <div class="login-header">
-            <h1><i class="fas fa-car-side"></i> Login</h1>
-        </div>
+    <div class="form-section"> 
+        <div class="modern-box" style="max-width: 400px; padding: 40px 30px;">
+            
+            <div class="logo-container">
+                <img src="/static/img/logo-carent.png" alt="CarRENT Logo" class="logo-img">
+            </div>
 
-        % if defined('error'):
-        <div class="error-msg">
-            <i class="fas fa-exclamation-circle"></i> {{error}}
-        </div>
-        % end
-
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            <div class="form-header">
+                <p>Bem-vindo de volta! Faça seu login.</p>
             </div>
             
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" required placeholder="Sua senha">
-                <i class="fas fa-eye password-toggle" onclick="togglePassword()"></i>
+            % if defined('error'):
+                <div class="error-msg" style="
+                    background-color: #fff4e5; /* Fundo levemente laranja para erro */
+                    color: #d35400; 
+                    padding: 12px;
+                    border-radius: 6px;
+                    margin-bottom: 18px;
+                    border: 1px solid #e67e22;
+                    font-size: 14px;
+                    display: flex; align-items: center; gap: 8px;
+                ">
+                    <i class="fas fa-exclamation-triangle"></i> {{error}}
+                </div>
+            % end
+
+            <form action="/login" method="post" class="styled-form">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                </div>
+                
+                <div class="form-group" style="position: relative;">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required placeholder="Sua senha">
+                    <i class="fas fa-eye password-toggle" onclick="togglePassword()"></i>
+                </div>
+
+                <button type="submit" class="btn-submit">ACESSAR SISTEMA</button> 
+            </form>
+
+            <hr style="margin: 25px 0; border-top: 1px solid #eee;">
+
+            <div style="text-align: center;">
+                <p style="color: #777; margin-bottom: 5px;">Não possui cadastro?</p>
+                <a href="/users/add" class="register-link" style="font-weight: 700;">Criar uma conta agora</a>
             </div>
-
-            <button type="submit" class="btn-submit">Entrar</button>
-        </form>
-
-        <hr>
-
-        <p>Ainda não tem conta?</p>
-        <a href="/users/add" class="register-link">Criar nova conta</a>
+        </div>
     </div>
 
     <script>
