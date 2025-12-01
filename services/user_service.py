@@ -10,13 +10,14 @@ class UserService:
 
     def get_by_id(self, user_id):
         return self.model.get_by_id(user_id)
-
+    #valicação do email, se não tem @ oi .com no email ele puxa a excessão com a mensagem do @ e do .com
+    #mesmo para a senha, precisa ter mais de 8 caracteres para funcionar
     def _validate_input(self, email, password):
         if '@' not in email or '.com' not in email:
             raise Exception("Email inválido: deve conter '@' e terminar com '.com'.")
         if password and len(password) <= 8:
              raise Exception("Senha inválida: deve conter mais de 8 caracteres.")
-
+    #salva o usuário
     def save(self):
         users = self.model.get_all()
         last_id = max([u.id for u in users], default=0)
@@ -26,7 +27,7 @@ class UserService:
         self._validate_input(email, password)
         user = User(id=last_id + 1, email=email, password=password, is_locador=is_locador)
         self.model.add(user)
-
+    #edição do usuario, algo não usado realmente no projeto, apenas para fins de administração
     def edit_user(self, user):
         email = request.forms.get('email')
         password = request.forms.get('password')

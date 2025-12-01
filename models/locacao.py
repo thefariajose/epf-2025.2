@@ -1,6 +1,7 @@
 from .basemodel import Base, BaseModel
 
 class Locacao(Base):
+    #Constructor
     def __init__(self, id, locador_id, cliente_id, veiculo_id, data_inicio, data_fim, valor_total, status):
         super().__init__(id)
         self.locador_id = locador_id
@@ -18,7 +19,7 @@ class Locacao(Base):
     def from_dict(cls, data):
         data.setdefault('data_fim', None)
         return cls(**data)
-
+#mesmos da cliente
 class LocacaoModel(BaseModel):
     def __init__(self):
         super().__init__('locacoes.json', Locacao)

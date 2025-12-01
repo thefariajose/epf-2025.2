@@ -1,6 +1,7 @@
 from .basemodel import Base, BaseModel
 
 class Vehicle(Base):
+    #Constructor
     def __init__(self, id, placa, marca, modelo, ano, quilometragem, status, is_disponivel, preco_diaria):
         super().__init__(id)
         self.placa = placa

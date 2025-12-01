@@ -1,12 +1,13 @@
 from bottle import request
 from models.user import UserModel
 
-#Já que o Login não armazena dados não é necessário ter uma model só pro login.
-#A lógica daqui pega os dados do User, que é aonde é cadastrado o usuário e compara com o recebido
 class LoginService:
     def __init__(self):
         self.user_model = UserModel()
-    
+    #Requisita que o usuário coloque um email e uma senha, busca os já cadastrados e compara,
+    #Caso o email e a senha existam ele entra, caso não é barrado
+    #a exception era pra resolver um problema que estava sendo gerado por caso existir o email
+    #E a senha ser nula
     def authenticate(self):
         email = request.forms.get('email')
         password = request.forms.get('password')

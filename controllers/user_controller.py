@@ -8,8 +8,7 @@ class UserController(BaseController):
 
         self.setup_routes()
         self.user_service = UserService()
-
-
+        #rotas definidas
     def setup_routes(self):
         self.app.route('/users', method='GET', callback=self.list_users)
         self.app.route('/users/add', method=['GET', 'POST'], callback=self.add_user)
@@ -29,7 +28,6 @@ class UserController(BaseController):
                 self.user_service.save()
                 self.redirect('/login')
             except Exception as e:
-                #renderiza o formulário novamente mostrando o erro
                 return self.render('user_form', user=None, action="/users/add", error=str(e))
 
 

@@ -8,7 +8,7 @@ class ClienteService:
 
     def get_by_id(self, user_id):
         return self.cliente_model.get_by_id(user_id)
-
+    #semelhantemente ao do locador, aqui é a mesma coisa, mas com endereço
     def criar_ou_atualizar(self, user_id, nome, telefone, cpf, endereco):
         if not (cpf.isdigit() and len(cpf) == 11):
             raise Exception("CPF inválido.")
