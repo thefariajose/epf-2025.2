@@ -32,15 +32,14 @@ class LocadorController(BaseController):
         locador = self.locador_service.get_by_id(user_id)
         if not locador: return redirect('/locador/perfil')   
         todas_locacoes = self.locacao_service.get_by_locador(user_id)
-        solicitacoes = [l for l in todas_locacoes if l.status == 'em_negociacao'] 
-        historico = [l for l in todas_locacoes if l.status != 'em_negociacao']
+        solicitacoes = [l for l in todas_locacoes if l.status == 'em_negociacao'] #avançado
+        historico = [l for l in todas_locacoes if l.status != 'em_negociacao'] #avançado
         
         return self.render('dashboard_locador', locador=locador, solicitacoes=solicitacoes, historico=historico)
 
     def perfil(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
-
         if request.method == 'POST':
             try:
                 self.locador_service.criar_ou_atualizar(
@@ -50,13 +49,9 @@ class LocadorController(BaseController):
                     cnpj=request.forms.get('cnpj')
                 )
             except Exception as e:
-                # Retorna o erro na view se falhar a validação
                 locador = self.locador_service.get_by_id(user_id)
                 return self.render('locador_form', locador=locador, error=str(e))
-            
-            # Redirect movido para FORA do try
             return redirect('/dashboard-locador')
-        
         else:
             locador = self.locador_service.get_by_id(user_id)
             return self.render('locador_form', locador=locador)
@@ -78,10 +73,7 @@ class LocadorController(BaseController):
                 novo_veiculo = self.vehicle_service.create_vehicle(dados)
                 self.locador_service.vincular_veiculo(user_id, novo_veiculo)
             except Exception as e:
-                # Retorna erro no formulário de veículo
                 return self.render('veiculo_form', veiculo=None, action='/locador/veiculo/add', error=str(e))
-            
-            # Redirect movido para FORA do try
             return redirect('/dashboard-locador')
         else:
             return self.render('veiculo_form', veiculo=None, action='/locador/veiculo/add')
@@ -101,18 +93,12 @@ class LocadorController(BaseController):
                     'preco_diaria': request.forms.get('preco_diaria')
                 }
                 veiculo_atualizado = self.vehicle_service.update_vehicle(id, dados)
-                
                 if veiculo_atualizado:
                     self.locador_service.atualizar_veiculo_vinculado(user_id, veiculo_atualizado)
-            
             except Exception as e:
-                # Mostra o erro no formulário em vez de texto puro
                 veiculo = self.vehicle_service.get_by_id(id)
                 return self.render('veiculo_form', veiculo=veiculo, action=f'/locador/veiculo/edit/{id}', error=str(e))
-            
-            # Redirect movido para FORA do try
             return redirect('/dashboard-locador')
-        
         else:
             veiculo = self.vehicle_service.get_by_id(id)
             return self.render('veiculo_form', veiculo=veiculo, action=f'/locador/veiculo/edit/{id}')

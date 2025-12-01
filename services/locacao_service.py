@@ -60,11 +60,11 @@ class LocacaoService:
 
     def get_by_locador(self, locador_id):
         self.locacao_model.locacoes = self.locacao_model._load()
-        return [l for l in self.locacao_model.get_all() if l.locador_id == locador_id]
+        return [l for l in self.locacao_model.get_all() if l.locador_id == locador_id]#avançado
 
     def get_by_cliente(self, cliente_id):
         self.locacao_model.locacoes = self.locacao_model._load()
-        return [l for l in self.locacao_model.get_all() if l.cliente_id == cliente_id]
+        return [l for l in self.locacao_model.get_all() if l.cliente_id == cliente_id]#avançado
     
     def get_by_id(self, locacao_id):
         return self.locacao_model.get_by_id(locacao_id)

@@ -1,5 +1,5 @@
 from models.locador import Locador, LocadorModel
-from models.vehicles import Vehicle, VehicleModel
+from models.vehicles import VehicleModel
 from models.user import UserModel 
 
 class LocadorService:
@@ -73,5 +73,5 @@ class LocadorService:
         locador = self.get_by_id(user_id)
         
         if locador:
-            locador.veiculos = [v for v in locador.veiculos if v.id != veiculo_id]
+            locador.veiculos = [v for v in locador.veiculos if v.id != veiculo_id]#avançado
             self.locador_model.update_locador(locador)

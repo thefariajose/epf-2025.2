@@ -87,3 +87,4 @@ class LocacaoModel:
     def delete_locacao(self, locacao_id: int):
         self.locacoes = [l for l in self.locacoes if l.id != locacao_id]
         self._save()
+        
