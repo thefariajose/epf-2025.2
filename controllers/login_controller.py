@@ -15,21 +15,14 @@ class LoginController(BaseController):
     def login(self):
         if request.method == 'GET':
             return self.render('login')
-        
         else:
             user = self.login_service.authenticate()
-            
             if user:
-                # Salva o ID no cookie
                 response.set_cookie("user_id", str(user.id), secret='secret_key')
-    
-                # Verifica se é locador
-                is_locador = str(user.is_locador).lower() == 'true' or user.is_locador == 'on' or user.is_locador is True
-                
+                is_locador = str(user.is_locador).lower() == 'true' or user.is_locador == 'on' or user.is_locador is True   
                 if is_locador:
                     return self.redirect('/dashboard-locador') 
                 else:
-                    # ALTERADO: Agora manda o cliente para a vitrine
                     return self.redirect('/cliente/vitrine') 
             else:
                 return self.render('login', error="Email ou senha incorretos")
