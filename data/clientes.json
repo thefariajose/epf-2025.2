@@ -10,5 +10,77 @@
         "endereco": "wqwe3crrqwexw",
         "historico_aluguel": [],
         "locacao_atual": null
+    },
+    {
+        "id": 3,
+        "name": "Giorgian de Arrascaeta",
+        "email": "cliente2@teste.com",
+        "password": "123",
+        "telephone": "21 232332323",
+        "is_locador": false,
+        "cpf": "1234567891",
+        "endereco": "wqwe3crrqwexw",
+        "historico_aluguel": [],
+        "locacao_atual": null
+    },
+    {
+        "id": 9,
+        "name": "alyson",
+        "email": "alyson1454@gmail.com",
+        "password": "123456789",
+        "telephone": "12345678901",
+        "is_locador": false,
+        "cpf": "12345678901",
+        "endereco": "asdffgd",
+        "historico_aluguel": [],
+        "locacao_atual": null
+    },
+    {
+        "id": 10,
+        "name": "teste teste",
+        "email": "clienteteste3@gmail.com",
+        "password": "123456789",
+        "telephone": "61912344321",
+        "is_locador": false,
+        "cpf": "12312332123",
+        "endereco": "xhset",
+        "historico_aluguel": [],
+        "locacao_atual": null
+    },
+    {
+        "id": 11,
+        "name": "novo",
+        "email": "t4@gmail.com",
+        "password": "123412345",
+        "telephone": "61912345678",
+        "is_locador": false,
+        "cpf": "12312312354",
+        "endereco": "astarakov",
+        "historico_aluguel": [],
+        "locacao_atual": null
+    },
+    {
+        "id": 12,
+        "name": "teste",
+        "email": "t5@gmail.com",
+        "password": "123412345",
+        "telephone": "61912312311",
+        "is_locador": false,
+        "cpf": "12312312312",
+        "endereco": "teste",
+        "historico_aluguel": [],
+        "locacao_atual": null
+    },
+    {
+        "id": 13,
+        "name": "teste",
+        "email": "t@gmail.com",
+        "password": "123456789",
+        "telephone": "61912312312",
+        "is_locador": false,
+        "cpf": "12312312312",
+        "endereco": "asdqawrzscqawer",
+        "historico_aluguel": [],
+        "locacao_atual": null
     }
 ]

@@ -13,10 +13,17 @@ class ClienteService:
     def criar_ou_atualizar(self, user_id, nome, telefone, cpf, endereco):
         self.user_model.users = self.user_model._load()
         user_base = self.user_model.get_by_id(user_id)
-        
         if not user_base: 
             return None
-
+        if not cpf.isdigit():
+            raise Exception("CPF inválido: deve conter dígitos numéricos")
+        if len(cpf) != 11:
+            raise Exception("CPF inválido: deve conter exatamente 11 dígitos")
+        #verifica se telefone tem 11 digitos e são numeros
+        if not telefone.isdigit():
+            raise Exception("Telefone inválido: deve conter dígitos numéricos")
+        if len(telefone) != 11:
+            raise Exception("Telefone inválido: deve conter exatamente 11 dígitos")
         self.cliente_model.clientes = self.cliente_model._load()
         cliente = self.cliente_model.get_by_id(user_id)
 

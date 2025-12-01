@@ -1,6 +1,5 @@
 import json
 import os
-from dataclasses import dataclass, asdict
 from typing import List
 
 #Classe para que haja o processo de alugar um carro ou alocar um carro

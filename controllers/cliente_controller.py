@@ -1,10 +1,4 @@
-
-
-
-# Contém Service de Cliente e visualiza Service de Vehicle
-
-
-from bottle import Bottle, request, redirect, response
+from bottle import Bottle, request, redirect
 from .base_controller import BaseController
 from services.cliente_service import ClienteService
 from services.vehicle_service import VehicleService
@@ -42,6 +36,7 @@ class ClienteController(BaseController):
     def perfil(self):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
+        
         if request.method == 'POST':
             try:
                 self.cliente_service.criar_ou_atualizar(
@@ -52,8 +47,13 @@ class ClienteController(BaseController):
                     endereco=request.forms.get('endereco')
                 )
             except Exception as e:
-                return f"Erro ao salvar: {e}"
+                # Se der erro (validação), cai aqui e retorna o form com erro
+                cliente = self.cliente_service.get_by_id(user_id)
+                return self.render('cliente_form', cliente=cliente, error=str(e))
+            
+            # Se deu certo (não caiu no except), o código continua aqui fora:
             return redirect('/cliente/vitrine')
+            
         else:
             cliente = self.cliente_service.get_by_id(user_id)
             return self.render('cliente_form', cliente=cliente)
@@ -83,7 +83,9 @@ class ClienteController(BaseController):
             except Exception as e:
                 import traceback
                 traceback.print_exc()
+                # Mostra o erro na tela (você pode adaptar a view se tiver campo de erro lá)
                 return f"Erro ao solicitar aluguel: {str(e)}"
+            
             return redirect('/cliente/meus_alugueis')
     
     def meus_alugueis(self):

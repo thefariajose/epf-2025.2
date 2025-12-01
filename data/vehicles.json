@@ -9,5 +9,16 @@
         "status": "disponivel",
         "is_disponivel": true,
         "preco_diaria": 2500.0
+    },
+    {
+        "id": 2,
+        "placa": "GAM-2019",
+        "marca": "ferrari",
+        "modelo": "italia ",
+        "ano": 2020,
+        "quilometragem": 1231234.0,
+        "status": "disponivel",
+        "is_disponivel": true,
+        "preco_diaria": 12344.0
     }
 ]

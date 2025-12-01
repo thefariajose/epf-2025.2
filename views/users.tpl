@@ -29,9 +29,9 @@
 
                     <td>
                         % if u.is_locador:
-                            <span class="tag tag-green">Locador</span>
+                            <span style="color: green; font-weight: bold; background: #e8f5e9; padding: 4px 8px; border-radius: 4px;">Locador</span>
                         % else:
-                            <span class="tag tag-gray">Cliente</span>
+                            <span style="color: #2c3e50; background: #eceff1; padding: 4px 8px; border-radius: 4px;">Cliente</span>
                         % end
                     </td>
 
