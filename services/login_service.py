@@ -11,9 +11,9 @@ class LoginService:
         email = request.forms.get('email')
         password = request.forms.get('password')
         user = self.user_model.get_by_email(email)
-        
         try:
-            if user.password == password and user.email == email:
+            if user and user.password == password:
                 return user
         except AttributeError:
             return None
+        return None

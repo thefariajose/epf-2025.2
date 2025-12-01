@@ -1,14 +1,8 @@
-import json
-import os
-from typing import List
+from .basemodel import Base, BaseModel
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
-
-#Classe dos veículos
-
-class Vehicle:
+class Vehicle(Base):
     def __init__(self, id, placa, marca, modelo, ano, quilometragem, status, is_disponivel, preco_diaria):
-        self.id = id
+        super().__init__(id)
         self.placa = placa
         self.marca = marca
         self.modelo = modelo
@@ -19,74 +13,15 @@ class Vehicle:
         self.preco_diaria = preco_diaria
 
     def __repr__(self):
-        return (f"Vehicle(id={self.id}, placa='{self.placa}', marca='{self.marca}', "
-                f"modelo='{self.modelo}', ano='{self.ano}',"
-                f"quilometragem='{self.quilometragem}', status='{self.status}',"
-                f"is_disponivel='{self.is_disponivel}', preco_diaria='{self.preco_diaria}')")
+        return f"Vehicle({self.placa}, {self.modelo})"
     
     def to_dict(self):
-        return {
-            'id' : self.id,
-            'placa' : self.placa,
-            'marca': self.marca,
-            'modelo' : self.modelo,
-            'ano' : self.ano,
-            'quilometragem' : self.quilometragem,
-            'status' : self.status,
-            'is_disponivel' : self.is_disponivel,
-            'preco_diaria' : self.preco_diaria
-        }
+        return self.__dict__
     
     @classmethod
     def from_dict(cls, data):
-        return cls(
-            id=data['id'],
-            placa=data['placa'],
-            marca=data['marca'],
-            modelo=data['modelo'],
-            ano=data['ano'],
-            quilometragem=data['quilometragem'],
-            status=data['status'],
-            is_disponivel=data['is_disponivel'],
-            preco_diaria=data['preco_diaria']
-        )
+        return cls(**data)
 
-class VehicleModel:
-    FILE_PATH = os.path.join(DATA_DIR, 'vehicles.json')
-    
+class VehicleModel(BaseModel):
     def __init__(self):
-        self.vehicles = self._load()
-    
-    def _load(self):
-        if not os.path.exists(self.FILE_PATH):
-            return []
-        with open(self.FILE_PATH, 'r', encoding = 'utf-8') as f:
-            # Olhar classe Ciliente
-            return [Vehicle.from_dict(item) for item in json.load(f)]
-        
-    def _save(self):
-        with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
-            json.dump([v.to_dict() for v in self.vehicles], f, indent=4, ensure_ascii=False)
-    
-    def get_all(self):
-        return self.vehicles
-
-    def get_by_id(self, vehicle_id):
-        return next((v for v in self.vehicles if v.id == vehicle_id), None)
-
-    def add(self, vehicle):
-        self.vehicles.append(vehicle)
-        self._save()
-
-    def update(self, updated_vehicle):
-        for i, v in enumerate(self.vehicles):
-            if v.id == updated_vehicle.id:
-                self.vehicles[i] = updated_vehicle
-                self._save()
-                break
-
-    def delete(self, vehicle_id):
-        self.vehicles = [v for v in self.vehicles if v.id != vehicle_id]
-        self._save()
-
-
+        super().__init__('vehicles.json', Vehicle)

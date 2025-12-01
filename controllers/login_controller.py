@@ -19,7 +19,7 @@ class LoginController(BaseController):
             user = self.login_service.authenticate()
             if user:
                 response.set_cookie("user_id", str(user.id), secret='secret_key')
-                is_locador = str(user.is_locador).lower() == 'true' or user.is_locador == 'on' or user.is_locador is True   
+                is_locador = str(user.is_locador).lower() in ('true', 'on', '1')
                 if is_locador:
                     return self.redirect('/dashboard-locador') 
                 else:

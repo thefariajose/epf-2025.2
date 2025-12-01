@@ -47,11 +47,8 @@ class ClienteController(BaseController):
                     endereco=request.forms.get('endereco')
                 )
             except Exception as e:
-                # Se der erro (validação), cai aqui e retorna o form com erro
                 cliente = self.cliente_service.get_by_id(user_id)
                 return self.render('cliente_form', cliente=cliente, error=str(e))
-            
-            # Se deu certo (não caiu no except), o código continua aqui fora:
             return redirect('/cliente/vitrine')
             
         else:
@@ -61,18 +58,14 @@ class ClienteController(BaseController):
     def solicitar_aluguel(self, veiculo_id):
         user_id = self._get_user_id()
         if not user_id: return redirect('/login')
-
         veiculo = self.vehicle_service.get_by_id(veiculo_id)
         if not veiculo or not veiculo.is_disponivel:
             return "Veículo indisponível."
-
         if request.method == 'GET':
             return self.render('alugar_veiculo', veiculo=veiculo)
-        
         else:
             data_inicio = request.forms.get('data_inicio')
             data_fim = request.forms.get('data_fim')
-            
             try:
                 self.locacao_service.criar_solicitacao(
                     client_id=user_id, 
@@ -83,9 +76,7 @@ class ClienteController(BaseController):
             except Exception as e:
                 import traceback
                 traceback.print_exc()
-                # Mostra o erro na tela (você pode adaptar a view se tiver campo de erro lá)
                 return f"Erro ao solicitar aluguel: {str(e)}"
-            
             return redirect('/cliente/meus_alugueis')
     
     def meus_alugueis(self):
