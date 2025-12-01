@@ -1,115 +1,33 @@
-import json
-import os
-from models.locacao import Locacao
+from .basemodel import BasePerfil, BaseModel
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
-
-class Cliente:
-    def __init__(self, id, name, email, password, telephone, is_locador, cpf , endereco, historico_aluguel : list = None,  locacao_atual = None):
-        self.id = id
-        self.name = name
-        self.email = email
-        self.password = password
-        self.telephone = telephone
-        self.is_locador = is_locador
+class Cliente(BasePerfil):
+    def __init__(self, id, name, email, password, telephone, is_locador, cpf, endereco, historico_aluguel=None, locacao_atual=None):
+        super().__init__(id, name, email, password, telephone, is_locador)
         self.cpf = cpf
         self.endereco = endereco
         self.historico_aluguel = historico_aluguel if historico_aluguel else []
         self.locacao_atual = locacao_atual
 
     def to_dict(self):
-        locacao_atual_dict = None
-        if self.locacao_atual:
-            if hasattr(self.locacao_atual, 'to_dict'):
-                locacao_atual_dict = self.locacao_atual.to_dict()
-            else:
-                locacao_atual_dict = self.locacao_atual
-
-        historico_list = []
-        for locacao in self.historico_aluguel:
-            if hasattr(locacao, 'to_dict'):
-                historico_list.append(locacao.to_dict())
-            else:
-                historico_list.append(locacao)
-
-        return {
-            'id': self.id,
-            'name': self.name,
-            'email': self.email,
-            'password': self.password,
-            'telephone': self.telephone,
-            'is_locador': self.is_locador,
-            'cpf': self.cpf,
-            'endereco': self.endereco,
-            'historico_aluguel': historico_list,  
-            'locacao_atual': locacao_atual_dict 
-        }
+        from models.locacao import Locacao 
+        data = self.__dict__.copy()
+        data['locacao_atual'] = self.locacao_atual.to_dict() if self.locacao_atual and hasattr(self.locacao_atual, 'to_dict') else self.locacao_atual
+        data['historico_aluguel'] = [l.to_dict() if hasattr(l, 'to_dict') else l for l in self.historico_aluguel]
+        return data
 
     @classmethod
     def from_dict(cls, data):
-        locacao_obj = None
-        if data.get('locacao_atual'):
-            locacao_obj = Locacao.from_dict(data['locacao_atual']) 
+        from models.locacao import Locacao
+        d = data.copy()
+        if d.get('locacao_atual'):
+            d['locacao_atual'] = Locacao.from_dict(d['locacao_atual'])
+        hist = []
+        if d.get('historico_aluguel'):
+            for item in d['historico_aluguel']:
+                hist.append(Locacao.from_dict(item))
+        d['historico_aluguel'] = hist
+        return cls(**d)
 
-        historico_objs = []
-        if data.get('historico_aluguel'):
-            for item in data['historico_aluguel']:
-                historico_objs.append(Locacao.from_dict(item))
-
-        return cls(
-            id=data['id'],
-            name=data['name'],
-            email=data['email'],
-            password=data['password'],
-            telephone=data['telephone'],
-            is_locador=data['is_locador'],
-            cpf=data['cpf'],
-            endereco=data['endereco'],
-            historico_aluguel=historico_objs, 
-            locacao_atual=locacao_obj        
-        )
-
-class ClienteModel:
-    FILE_PATH = os.path.join(DATA_DIR, 'clientes.json')
-    
+class ClienteModel(BaseModel):
     def __init__(self):
-        self.clientes = self._load()
-
-    def _load(self):
-        if not os.path.exists(self.FILE_PATH):
-            return []
-        try:
-            with open(self.FILE_PATH, 'r', encoding='utf-8') as f:
-                content = f.read()
-                if not content: return []
-                data = json.loads(content)
-                return [Cliente.from_dict(item) for item in data]
-        except Exception:
-            return []
-
-    def _save(self):
-        if not os.path.exists(DATA_DIR):
-            os.makedirs(DATA_DIR)
-        with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
-            json.dump([c.to_dict() for c in self.clientes], f, indent=4, ensure_ascii=False)
-
-    def get_all(self):
-        return self.clientes
-
-    def get_by_id(self, cliente_id: int):
-        return next((c for c in self.clientes if c.id == cliente_id), None)
-
-    def add_cliente(self, cliente: Cliente):
-        self.clientes.append(cliente)
-        self._save()
-
-    def update_cliente(self, updated_cliente: Cliente):
-        for i, cliente in enumerate(self.clientes):
-            if cliente.id == updated_cliente.id:
-                self.clientes[i] = updated_cliente
-                self._save()
-                break
-
-    def delete_cliente(self, cliente_id: int):
-        self.clientes = [c for c in self.clientes if c.id != cliente_id]
-        self._save()
+        super().__init__('clientes.json', Cliente)
