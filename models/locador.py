@@ -1,7 +1,5 @@
 import json
 import os
-from dataclasses import dataclass, asdict
-from typing import List
 from models.locacao import Locacao
 from models.vehicles import Vehicle
 

@@ -2,21 +2,21 @@
     {
         "id": 1,
         "locador_id": 2,
-        "cliente_id": 1,
+        "cliente_id": 3,
         "veiculo_id": 1,
         "data_inicio": "2025-11-30",
-        "data_fim": "2025-12-03",
-        "valor_total": 9750.0,
-        "status": "concluido"
+        "data_fim": "2025-12-06",
+        "valor_total": 19500.0,
+        "status": "rejeitado"
     },
     {
         "id": 2,
         "locador_id": 2,
-        "cliente_id": 1,
+        "cliente_id": 3,
         "veiculo_id": 1,
-        "data_inicio": "2025-12-01",
-        "data_fim": "2025-12-06",
-        "valor_total": 16250.0,
-        "status": "rejeitado"
+        "data_inicio": "2025-11-30",
+        "data_fim": "2025-12-04",
+        "valor_total": 13000.0,
+        "status": "concluido"
     }
 ]

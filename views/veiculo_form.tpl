@@ -1,5 +1,17 @@
 % rebase('layout.tpl', title='Gerenciar Veículo')
 
+<style>
+    .error-message {
+        background-color: #ffe5e5;
+        color: #c0392b;
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        border: 1px solid #f5c6cb;
+        font-size: 14px;
+    }
+</style>
+
 <div style="display: flex; justify-content: center; padding: 20px;">
     <div class="form-container-box" style="max-width: 600px;">
         <div class="form-header">
@@ -7,6 +19,11 @@
             <p>Preencha os dados da frota</p>
         </div>
 
+        % if defined('error') and error:
+        <div class="error-message">
+            <i class="fas fa-exclamation-circle"></i> {{error}}
+        </div>
+        % end
         <form action="{{action}}" method="post">
             
             <div style="display: flex; gap: 15px;">

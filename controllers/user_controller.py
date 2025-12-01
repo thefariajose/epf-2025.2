@@ -25,8 +25,12 @@ class UserController(BaseController):
         if request.method == 'GET':
             return self.render('user_form', user=None, action="/users/add")
         else:
-            self.user_service.save()
-            self.redirect('/login')
+            try:
+                self.user_service.save()
+                self.redirect('/login')
+            except Exception as e:
+                #renderiza o formulário novamente mostrando o erro
+                return self.render('user_form', user=None, action="/users/add", error=str(e))
 
 
     def edit_user(self, user_id):

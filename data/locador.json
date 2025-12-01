@@ -21,5 +21,61 @@
             }
         ],
         "historico_locacoes": []
+    },
+    {
+        "id": 6,
+        "name": "carlos",
+        "email": "carolusrex@gmail.com",
+        "password": "123",
+        "telephone": "asfagfsdgsfdhgfdh",
+        "is_locador": true,
+        "cnpj": "adsgffdsgg",
+        "veiculos": [],
+        "historico_locacoes": []
+    },
+    {
+        "id": 7,
+        "name": "Peter ",
+        "email": "peterthegreat@gmail.com",
+        "password": "123456789",
+        "telephone": "12345678911",
+        "is_locador": true,
+        "cnpj": "12345678901234",
+        "veiculos": [],
+        "historico_locacoes": []
+    },
+    {
+        "id": 8,
+        "name": "luis",
+        "email": "luisemanuek@gmail.com",
+        "password": "123456789",
+        "telephone": "99999999999",
+        "is_locador": true,
+        "cnpj": "12345678901234",
+        "veiculos": [],
+        "historico_locacoes": []
+    },
+    {
+        "id": 14,
+        "name": "asdfg",
+        "email": "t6@gmail.com",
+        "password": "123456789",
+        "telephone": "61912312312",
+        "is_locador": true,
+        "cnpj": "12345678901234",
+        "veiculos": [
+            {
+                "id": 2,
+                "placa": "GAM-2019",
+                "marca": "ferrari",
+                "modelo": "italia ",
+                "ano": 2020,
+                "quilometragem": 1231234.0,
+                "status": "disponivel",
+                "is_disponivel": true,
+                "preco_diaria": 12344.0
+            }
+        ],
+        "historico_locacoes": []
     }
 ]

@@ -1,4 +1,4 @@
-from bottle import Bottle, request, response, redirect
+from bottle import Bottle, request, response
 from .base_controller import BaseController
 from services.login_service import LoginService
 
