@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "id": 1,
+        "placa": "GAM-2019",
+        "marca": "Fiat",
+        "modelo": "Uno Mille",
+        "ano": 2020,
+        "quilometragem": 10000.0,
+        "status": "disponivel",
+        "is_disponivel": true,
+        "preco_diaria": 100.0
+    }
+]

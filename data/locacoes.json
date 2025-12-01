@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "id": 1,
+        "locador_id": 1,
+        "cliente_id": 2,
+        "veiculo_id": 1,
+        "data_inicio": "2025-12-01",
+        "data_fim": "2025-12-04",
+        "valor_total": 390.0,
+        "status": "concluido"
+    }
+]

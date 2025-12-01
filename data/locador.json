@@ -1,1 +1,24 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "Locador 1",
+        "email": "locador1@gmail.com",
+        "password": "123456789",
+        "telephone": "12345678901",
+        "is_locador": true,
+        "cnpj": "12345678901234",
+        "veiculos": [
+            {
+                "id": 1,
+                "placa": "GAM-2019",
+                "marca": "Fiat",
+                "modelo": "Uno Mille",
+                "ano": 2020,
+                "quilometragem": 10000.0,
+                "status": "disponivel",
+                "is_disponivel": true,
+                "preco_diaria": 100.0
+            }
+        ]
+    }
+]
