@@ -82,5 +82,17 @@
         "email": "t6@gmail.com",
         "password": "123456789",
         "is_locador": true
+    },
+    {
+        "id": 15,
+        "email": "samuelino@hotmail.com",
+        "password": "123456789",
+        "is_locador": false
+    },
+    {
+        "id": 16,
+        "email": "isaquebeta@gmail.com",
+        "password": "123456789",
+        "is_locador": true
     }
 ]

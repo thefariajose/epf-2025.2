@@ -82,5 +82,17 @@
         "endereco": "asdqawrzscqawer",
         "historico_aluguel": [],
         "locacao_atual": null
+    },
+    {
+        "id": 15,
+        "name": "Samuel Lino",
+        "email": "samuelino@hotmail.com",
+        "password": "123456789",
+        "telephone": "61997799778",
+        "is_locador": false,
+        "cpf": "98723412343",
+        "endereco": "GuarÃÂ¡ II ao lado da igreja mÃÂ³rmon",
+        "historico_aluguel": [],
+        "locacao_atual": null
     }
 ]

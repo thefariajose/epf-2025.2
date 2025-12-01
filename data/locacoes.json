@@ -38,5 +38,25 @@
         "data_fim": "2025-12-09",
         "valor_total": 48141.6,
         "status": "em_negociacao"
+    },
+    {
+        "id": 5,
+        "locador_id": 2,
+        "cliente_id": 15,
+        "veiculo_id": 1,
+        "data_inicio": "2025-12-10",
+        "data_fim": "2025-12-16",
+        "valor_total": 19500.0,
+        "status": "rejeitado"
+    },
+    {
+        "id": 6,
+        "locador_id": 16,
+        "cliente_id": 1,
+        "veiculo_id": 3,
+        "data_inicio": "2025-12-18",
+        "data_fim": "2025-12-23",
+        "valor_total": 799.5,
+        "status": "concluido"
     }
 ]
